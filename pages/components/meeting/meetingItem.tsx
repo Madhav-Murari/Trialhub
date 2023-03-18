@@ -42,7 +42,7 @@ const MeetingItem: React.FC<props> = ({item}) => {
             </td>
             <td className="text-[30px] cursor-pointer relative" onClick = {clickHandler} onMouseLeave = {leaveHandler}>
                 ···
-                { isClicked && <div className="w-24 text-base bg-gray-100 z-10 absolute top-8 right-2">
+                { isClicked && <div className="w-24 text-base bg-gray-100 z-10 n absolute top-8 right-2">
                     <div className="w-full hover:bg-gray-400">View</div>
                     <div className="w-full hover:bg-gray-400">Edit</div>
                     <div className="w-full hover:bg-gray-400">Delete</div>
