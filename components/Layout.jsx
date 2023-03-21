@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
   const TaskSubpages = [
     {
       name: "Task Page",
-      route: "",
+      route: "/task",
     },
     {
       name: "TaskSubpage1",
@@ -62,12 +62,12 @@ const Layout = ({ children }) => {
     <div className="h-screen flex flex-col">
       <Navbar />
       <div className="flex flex-row flex-1">
-        <Sidebar
+        {/* <Sidebar
           sideProps={sideProps}
           pageRoute={pageRoute}
           pageName={pageName}
           hidden={hidden}
-        />
+        /> */}
         <main className="w-full">{children}</main>
       </div>
     </div>
