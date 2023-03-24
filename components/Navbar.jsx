@@ -5,16 +5,29 @@ const Navbar = () => {
   return (
     <div className="flex text-light-grey font-semibold text-xl justify-between items-center sticky top-0 px-4 py-2 my-4">
       <div>
-        <Link href="/">App_name</Link>
+        <Link href="/">Trialshoppy</Link>
       </div>
 
-      <div className="flex">
-        <div className="mx-2">
+      <div className="flex flex-row ">
+        <div className="mx-2 my-auto">
           <Link href="/employee">Employee</Link>
         </div>
-        <div className="mx-2">
+        <div className="mx-2 my-auto">
           <Link href={"/task"}>Task</Link>
         </div>
+
+        <Link
+          href="/login"
+          className="text-[#202020] border-2 border-[#202020] rounded-full  px-6 py-1 mx-1 flex items-center"
+        >
+          Login
+        </Link>
+        <Link
+          href="/signup"
+          className="text-[#ffffff] bg-[#202020] border-2 border-[#202020] rounded-full  px-6 py-1 mx-1 flex items-center"
+        >
+          Signup
+        </Link>
       </div>
     </div>
   );
