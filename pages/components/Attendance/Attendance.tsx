@@ -42,13 +42,15 @@ function Attendance() {
             <h3 className='font-bold my-3'>Attendance</h3>
             <div className="hidden md:inline-flex items-center space-x-10 ">
                  <h3 className='my-3'>Search</h3>
-                 <FilterIcon / >
+                 <FilterIcon />
                  <h3>18-12-2022</h3>
             </div>
     </div>
     <div className="bg-white m-4 overflow-auto py-2">
       <table className='w-full'>
         <thead>
+        <tbody>
+
         <tr>
           <th>DP</th>
           <th>Name</th>
@@ -61,9 +63,10 @@ function Attendance() {
         </thead>
         <tbody>
         {attendanceSheet.map((i,index) => (
-         <AttendanceItem key = {index} item = {i}/>
+          <AttendanceItem key = {index} item = {i}/>
         ))}
         </tbody>
+          </tbody>
       </table>
     </div>
     </>

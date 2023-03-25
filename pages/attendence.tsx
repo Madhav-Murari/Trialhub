@@ -1,8 +1,12 @@
 import React from 'react'
+import Attendance from './components/Attendance/Attendance'
 
 function attendence() {
   return (
-    <div>attendence</div>
+    <div>
+      {/* attendence */}
+      <Attendance />
+    </div>
   )
 }
 

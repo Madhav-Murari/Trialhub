@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from './components/header'
+// import Header from './components/header'
 import LeaveLeftSide from '../pages/components/Leave/leaveLeftSide'
 import LeaveContent from '../pages/components/Leave/leaveContent';
 import LeaveRightSidebar from './components/Leave/leaveRightSidebar';
@@ -9,7 +9,7 @@ function leave() {
   const [selected,setSelected]=useState(" ");
   return <>
    <div>
-    <Header />
+    {/* <Header /> */}
      <div className='flex'>
       <div className='w-1/5'>
     <LeaveLeftSide  selected={selected} setSelected={setSelected}/>
