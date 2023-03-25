@@ -38,7 +38,7 @@ function Attendance() {
   return (
     <>
     <Navbar/>
-    <div className='flex justify-between max-w-1280px mt-14 py-1 px-4 border-b bg-white'>
+    <div className='flex justify-between max-w-1280px mx-auto py-1 px-4 border-b bg-white'>
             <h3 className='font-bold my-3'>Attendance</h3>
             <div className="hidden md:inline-flex items-center space-x-10 ">
                  <h3 className='my-3'>Search</h3>
@@ -46,9 +46,8 @@ function Attendance() {
                  <h3>18-12-2022</h3>
             </div>
     </div>
-    <div className="bg-white m-4 overflow-auto py-2">
+    <div className="bg-white m-6 overflow-auto py-4 rounded-3xl">
       <table className='w-full'>
-        <thead>
         <tbody>
 
         <tr>
@@ -60,12 +59,9 @@ function Attendance() {
           <th>Out</th>
           <th>Total Working Hours</th>
         </tr>
-        </thead>
-        <tbody>
         {attendanceSheet.map((i,index) => (
           <AttendanceItem key = {index} item = {i}/>
         ))}
-        </tbody>
           </tbody>
       </table>
     </div>

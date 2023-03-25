@@ -15,7 +15,6 @@ a {
 
 * {
   box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .link-underline {
@@ -43,7 +42,7 @@ a {
 }
 
 body {
-	background:#E3D5CA;		
+	background: linear-gradient(90deg, #ffffff, #fbfbfb);		
 }
 
 .container {
@@ -253,11 +252,5 @@ button:hover{
 
 th,td{
 	text-align: center;
-	width:8rem;
-	padding:4px 0;
+	padding:2px 1rem;
 }
-
-table{
-	table-layout: fixed;
-}
-
