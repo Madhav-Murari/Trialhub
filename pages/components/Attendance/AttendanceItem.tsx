@@ -26,31 +26,5 @@ const AttendanceItem: React.FC<props> = ({ item }) => {
   )
 }
 
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <div className="w-10 m-auto">
-              <img src={item.dp} className="rounded-full" />
-            </div>
-          </td>
-          <td>{item.name}</td>
-          <td>{item.Department}</td>
-          <td>
-            {item.Presence ? (
-              <p style={{ color: "green" }}>Present</p>
-            ) : (
-              <p style={{ color: "red" }}>Absent</p>
-            )}
-          </td>
-          <td>{item.In}</td>
-          <td>{item.Out}</td>
-          <td>{item.TotalWorkingHours}</td>
-        </tr>
-      </tbody>
-    </table>
-  );
-};
-
 export default AttendanceItem;
  

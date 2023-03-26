@@ -1,7 +1,7 @@
 import React from 'react'
 import Attendance from './components/Attendance/Attendance'
 
-function attendence() {
+function attendance() {
   return (
     <div>
       {/* attendence */}
@@ -10,4 +10,4 @@ function attendence() {
   )
 }
 
-export default attendence
+export default attendance;
