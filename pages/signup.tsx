@@ -7,6 +7,7 @@ import {
   FaRegEnvelope,
 } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
+import Link from "next/link";
 
 function signup() {
   return (
@@ -88,12 +89,12 @@ function signup() {
                     Forget PassWord?
                   </a>
                 </div>
-                <a
+                <Link 
                   className="border-2 border-orange rounded-full px-12 py-2 inline-block font-semibold hover:bg-orange-300 hover:text-black-400"
-                  href="#"
+                  href="/worklog"
                 >
                   SignUp
-                </a>
+                </Link>
               </div>
             </div>
           </div>
