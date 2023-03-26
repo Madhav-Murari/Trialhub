@@ -9,4 +9,3 @@ function FilterIcon() {
 }
 
 export default FilterIcon;
-
