@@ -6,7 +6,7 @@ import WorkBox from './workBox';
 function Worklog(){
     return (
         <>
-        <Navbar/>
+        {/* <Navbar/> */}
         <div className='h-screen md:flex'>
             <div className=' w-full md:w-1/4 pt-16 h-full text-center bg-red-300 flex flex-col justify-around'>
                 <img src = "https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" className="h-40 w-40 rounded-md mx-auto"/>

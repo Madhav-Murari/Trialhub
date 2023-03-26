@@ -9,11 +9,21 @@ const Navbar = () => {
       </div>
 
       <div className="flex flex-row ">
-        <div className="mx-2 my-auto">
+        <div className="mx-3 my-auto">
           <Link href="/employee">Employee</Link>
         </div>
-        <div className="mx-2 my-auto">
+        <div className="mx-3 my-auto">
           <Link href={"/task"}>Task</Link>
+        </div>
+        
+        <div className="mx-3 my-auto">
+          <Link href={"/meeting"}>Meetings</Link>
+        </div>
+
+
+   
+        <div className="mx-3 my-auto">
+          <Link href={"/attendence"}>Attendence</Link>
         </div>
 
         <Link

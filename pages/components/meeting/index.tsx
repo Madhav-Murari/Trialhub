@@ -59,7 +59,7 @@ const meetingData = [
 function Meeting(){
     return (
         <>
-        <Navbar/>
+        {/* <Navbar/> */}
             <div className='flex justify-between max-w-1280px mt-14 py-1 px-4 border-b bg-white'>
             <h3 className='font-bold my-3'>Meeting</h3>
             <div className="hidden md:inline-flex items-center space-x-10 ">
