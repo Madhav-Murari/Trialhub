@@ -27,8 +27,8 @@ const AttendanceItem: React.FC<props> = ({ item }) => {
           <td>
             {item.Presence ? (
               <p style={{ color: "green" }}>Present</p>
-            ) : (
-              <p style={{ color: "red" }}>Absent</p>
+              ) : (
+                <p style={{ color: "red" }}>Absent</p>
             )}
           </td>
           <td>{item.In}</td>
@@ -41,4 +41,3 @@ const AttendanceItem: React.FC<props> = ({ item }) => {
 };
 
 export default AttendanceItem;
- 

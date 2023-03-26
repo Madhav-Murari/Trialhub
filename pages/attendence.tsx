@@ -10,4 +10,4 @@ function attendence() {
   )
 }
 
-export default attendence
+export default attendence;

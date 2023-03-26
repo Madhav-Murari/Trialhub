@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
+import Navbar from "./NavbarLayout";
 import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -80,12 +81,11 @@ function Login() {
                     Forget PassWord?
                   </a>
                 </div>
-                <a
+                <Link href="/worklog"
                   className="border-2 border-orange rounded-full px-12 py-2 inline-block font-semibold hover:bg-orange-300 hover:text-black-400"
-                  href="#"
                 >
                   SignIn
-                </a>
+                </Link>
               </div>
             </div>
           </div>
