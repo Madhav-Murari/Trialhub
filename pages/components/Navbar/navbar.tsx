@@ -35,7 +35,7 @@ function Navbar() {
         <LinkTo linkTo="leave" />
        </div>
 
-       <div className="flex flex-row">
+       <div className="md:flex hidden">
        <Link
           href="/login"
           className="text-[#202020] border-2 border-[#202020] rounded-full  px-6 py-1 mx-1 flex items-center"
