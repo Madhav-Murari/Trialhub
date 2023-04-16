@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CardEmployee from "./CardEmployee";
-import Left from "../assets/Left.svg";
-import Right from "../assets/Right.svg";
+import Left from "../../assets/Left.svg";
+import Right from "../../assets/Right.svg";
 import Image from "next/image";
 import employeeData from "./EmployeeData";
 

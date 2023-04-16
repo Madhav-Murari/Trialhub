@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-import Navbar from "../pages/components/Navbar/navbar";
+import Navbar from "../src/components/Navbar/navbar";
 
 
 const NavbarLayout = () => {

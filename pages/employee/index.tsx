@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import AllEmployees from "../components/employeeCards/AllEmployees";
+import AllEmployees from "../../src/components/employeeCards/AllEmployees";
 
 function employee() {
   const router = useRouter();

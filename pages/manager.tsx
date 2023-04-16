@@ -1,5 +1,5 @@
 import React from 'react'
-import ManagerTeam from './components/Manager/ManagerTeam'
+import ManagerTeam from '../src/components/Manager/ManagerTeam'
 
 
 export default function manager() {

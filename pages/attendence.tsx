@@ -1,5 +1,5 @@
 import React from 'react'
-import Attendance from './components/Attendance/Attendance'
+import Attendance from '../src/components/Attendance/Attendance'
 
 function attendence() {
   return (

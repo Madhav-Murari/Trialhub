@@ -1,5 +1,5 @@
 import React from "react";
-import Employee from "../assets/Employee.svg";
+import Employee from "../../assets/Employee.svg";
 import Image from "next/image";
 import employeeData from "./EmployeeData";
 

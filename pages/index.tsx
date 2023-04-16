@@ -1,5 +1,5 @@
 import React from "react";
-import EmployeeCard from "./components/employeeCards/AllEmployees";
+import EmployeeCard from "../src/components/employeeCards/AllEmployees";
 
 const index = () => {
   return (
