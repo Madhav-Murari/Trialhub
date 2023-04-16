@@ -2,7 +2,6 @@ import React from "react";
 
 interface props {
   item: {
-    dp?: string;
     name: string;
     Department: string;
     Presence: boolean;
@@ -18,11 +17,7 @@ const AttendanceItem: React.FC<props> = ({ item }) => {
       <td>
         <div className="w-10 m-auto">
           <img
-            src={
-              item.dp
-                ? item.dp
-                : "https://www.w3schools.com/howto/img_avatar.png"
-            }
+            src="https://www.w3schools.com/howto/img_avatar.png"
             className="rounded-full"
           />
         </div>
