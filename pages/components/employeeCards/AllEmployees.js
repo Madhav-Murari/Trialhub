@@ -3,7 +3,7 @@ import CardEmployee from "./CardEmployee";
 import Left from "../assets/Left.svg";
 import Right from "../assets/Right.svg";
 import Image from "next/image";
-import { employeeData } from "./EmployeeData";
+import employeeData from "./EmployeeData";
 
 export default function EmployeeCard() {
   const [start, setStart] = useState(0);
