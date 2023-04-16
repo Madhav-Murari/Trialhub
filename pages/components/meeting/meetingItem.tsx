@@ -29,7 +29,7 @@ const MeetingItem: React.FC<Props> = ({ item }) => {
       <tr className="h-10">
         <td>{item?.title && item.title}</td>
         <td>
-          <StatusTile status={item.status} />
+          {item?.status !== undefined && <StatusTile status={item.status} />}
         </td>
         <td>{item?.purpose && item.purpose}</td>
         <td>{item?.date && item.date}</td>

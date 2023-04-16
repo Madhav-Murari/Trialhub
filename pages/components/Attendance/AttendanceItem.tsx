@@ -2,7 +2,7 @@ import React from "react";
 
 interface props {
   item: {
-    dp?: string;
+    dp: string;
     name: string;
     Department: string;
     Presence: boolean;
@@ -17,7 +17,7 @@ const AttendanceItem: React.FC<props> = ({ item }) => {
     <tr>
       <td>
         <div className="w-10 m-auto">
-        <img src={item.dp || ""} className="rounded-full" />
+        <img src={item.dp || "https://www.w3schools.com/howto/img_avatar.png"} className="rounded-full" />
         </div>
       </td>
       <td>{item.name && item.name}</td>
