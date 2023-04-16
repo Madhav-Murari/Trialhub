@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import {FilterIcon} from "../components/icons/index";
-import {GridIcon} from "../components/icons/index";
+import {FilterIcon} from "../components/icons";
+import {GridIcon} from "../components/icons";
 import AllEmployees from "../components/employeeCards/AllEmployees";
 
 function employee() {
