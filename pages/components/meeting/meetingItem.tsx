@@ -27,12 +27,12 @@ const MeetingItem: React.FC<props> = ({item}) => {
     return (
         <>
         <tr className="h-10">
-            <td>{item.title}</td>
+            <td>{item.title && item.title}</td>
             <td><StatusTile status = {item.status}/></td>
-            <td>{item.purpose}</td>
-            <td>{item.date}</td>
-            <td>{item.time}</td>
-            <td>{item.place}</td>
+            <td>{item.purpose && item.purpose}</td>
+            <td>{item.date && item.date}</td>
+            <td>{item.time && item.time}</td>
+            <td>{item.place && item.place}</td>
             <td className="items-center relative">
                 <div className="w-14 h-10 mx-auto relative">
                 {item.invite[1] && <img src = {item.invite[1]} className = "rounded-full w-10 h-10 border-2 border-white object-cover absolute left-0" alt = "invited"/>}
