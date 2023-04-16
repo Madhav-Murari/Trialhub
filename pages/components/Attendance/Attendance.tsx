@@ -1,6 +1,5 @@
 import React from 'react'
-import FilterIcon from '../icons/FilterIcon';
-import Navbar from '../Navbar/navbar';
+import {FilterIcon} from '../icons';
 import AttendanceItem from './AttendanceItem';
 
 const attendanceSheet = [

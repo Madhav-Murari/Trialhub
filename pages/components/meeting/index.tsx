@@ -1,5 +1,5 @@
 import React from "react";
-import FilterIcon from "../icons/FilterIcon";
+import {FilterIcon} from "../icons";
 import Navbar from "../Navbar/navbar";
 import MeetingItem from "./meetingItem";
 

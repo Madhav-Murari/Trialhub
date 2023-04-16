@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import LinkTo from "./LinkTo";
-import BurgerIcon from "../icons/BurgerIcon";
-import CloseIcon from "../icons/CloseIcon";
+import {BurgerIcon} from "../icons";
+import {CloseIcon} from "../icons";
 
 function Navbar() {
   const [display, setDisplay] = useState("hidden");
