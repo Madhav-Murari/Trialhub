@@ -2,13 +2,13 @@ import React from "react";
 import Image from "next/image";
 
 import { TiMessages } from "react-icons/ti";
-import Suraj from "../assets/Suraj.png";
+import Suraj from "../../assets/Suraj.png";
 import TeamCard from "./TeamCard";
-import Deep from "../assets/Deep.png";
-import Priya from "../assets/Priya.png";
-import Mohit from "../assets/Mohit.png";
-import Shreya from "../assets/Shreya.png";
-import Prince from "../assets/Prince.png";
+import Deep from "../../assets/Deep.png";
+import Priya from "../../assets/Priya.png";
+import Mohit from "../../assets/Mohit.png";
+import Shreya from "../../assets/Shreya.png";
+import Prince from "../../assets/Prince.png";
 
 export default function ManagerTeam() {
   return (
