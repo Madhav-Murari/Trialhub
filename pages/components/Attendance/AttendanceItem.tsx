@@ -2,7 +2,7 @@ import React from "react";
 
 interface props {
   item: {
-    dp: string;
+    dp?: string;
     name: string;
     Department: string;
     Presence: boolean;
