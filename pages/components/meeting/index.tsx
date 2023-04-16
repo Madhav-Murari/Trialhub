@@ -1,5 +1,5 @@
 import React from "react";
-import {FilterIcon} from "../icons";
+import FilterIcon from "../icons/FilterIcon";
 import MeetingItem from "./meetingItem";
 
 const meetingData = [

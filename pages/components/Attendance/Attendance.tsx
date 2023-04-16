@@ -1,5 +1,5 @@
 import React from 'react'
-import {FilterIcon} from '../icons';
+import FilterIcon from '../icons/FilterIcon';
 import AttendanceItem from './AttendanceItem';
 
 const attendanceSheet = [
