@@ -1,7 +1,12 @@
 export { default as ArticleIcon } from "./ArticleIcon";
-export { default as HomeIcon } from "./HomeIcon";
-export { default as UsersIcon } from "./UsersIcon";
-export { default as VideosIcon } from "./VideosIcon";
+export { default as BurgerIcon } from "./BurgerIcon";
+export { default as CloseIcon } from "./CloseIcon";
 export { default as CollapsIcon } from "./CollapsIcon";
+export { default as FilterIcon } from "./FilterIcon";
+export { default as GridIcon } from "./GridIcon";
+export { default as HomeIcon } from "./HomeIcon";
 export { default as LogoIcon } from "./Logo";
 export { default as LogoutIcon } from "./LogoutIcon";
+export { default as NotifyIcon } from "./NotifyIcon";
+export { default as UsersIcon } from "./UsersIcon";
+export { default as VideosIcon } from "./VideosIcon";
