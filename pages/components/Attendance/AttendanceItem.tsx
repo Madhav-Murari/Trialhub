@@ -14,8 +14,6 @@ interface props {
 
 const AttendanceItem: React.FC<props> = ({ item }) => {
   return (
-    <table>
-      <tbody>
         <tr>
           <td>
             <div className="w-10 m-auto">
@@ -35,8 +33,6 @@ const AttendanceItem: React.FC<props> = ({ item }) => {
           <td>{item.Out}</td>
           <td>{item.TotalWorkingHours}</td>
         </tr>
-      </tbody>
-    </table>
   );
 };
 
