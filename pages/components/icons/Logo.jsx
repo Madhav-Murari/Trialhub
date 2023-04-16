@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function Logo({ fill = "#3B81F6", ...rest }) {
+const Logo = ({ fill = "#3B81F6", ...rest }) => {
   return (
     <svg
       width={40}
@@ -20,6 +20,6 @@ function Logo({ fill = "#3B81F6", ...rest }) {
       />
     </svg>
   );
-}
+};
 
 export default Logo;
