@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import LeavePage from "../pages/components/Leave/LeavePage";
 
 function leave() {
-  const [page,setPage] = useState("manage")
   return (
     <>
       <LeavePage />
