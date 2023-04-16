@@ -4,7 +4,7 @@ import AttendanceItem from './AttendanceItem';
 
 const attendanceSheet = [
   {
-    dp:"",
+    dp:"https://www.w3schools.com/howto/img_avatar.png",
     name:"Harsh",
     Department:"Web Design",
     Presence:true,
