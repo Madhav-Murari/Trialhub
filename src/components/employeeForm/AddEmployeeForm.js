@@ -1,6 +1,6 @@
 import Image from "next/image";
-import React, { useState, useMemo } from "react";
-import ProfilePicture from "../assets/ProfilePicture.svg";
+import React, { useState } from "react";
+import ProfilePicture from "../../assets/ProfilePicture.svg";
 import CountryList from "./CountryList";
 import UploadDocuments from "./UploadDocuments";
 
@@ -9,18 +9,18 @@ export default function AddEmployeeForm() {
 
   const handleStep1 = (e) => {
     e.preventDefault();
-    if(name  && dob && mobile && email){
+    // if(name  && dob && mobile && email){
     setstep(2);
     console.log(name, dob, mobile, email);
-    }else alert("Please fill all fields")
+    // }else alert("Please fill all fields")
   };
 
   const handleStep2 = (e) => {
     e.preventDefault();
-    if (area && town && state && pincode) {
+    // if (area && town && state && pincode) {
       setstep(3);
       console.log(area, town, state, pincode);
-    } else alert("Please fill all fields");
+    // } else alert("Please fill all fields");
   };
 
   const [name, setName] = useState("");

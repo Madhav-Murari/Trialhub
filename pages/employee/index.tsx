@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import FilterIcon from "../components/icons/filterIcon";
-import GridIcon from "../components/icons/gridIcon";
-import AllEmployees from "../components/employeeCards/AllEmployees";
+import AllEmployees from "../../src/components/employeeCards/AllEmployees";
 
 function employee() {
   const router = useRouter();
@@ -24,11 +22,9 @@ function employee() {
             </div>
             <div className="hidden md:inline-flex space-x-10 ">
               <label className="my-auto bg-[#fff] rounded-md p-2 flex flex-row justify-center align-center">
-                {" "}
                 <span className="my-auto mx-1">
-                  {" "}
-                  <MdSearch />{" "}
-                </span>{" "}
+                  <MdSearch />
+                </span>
                 <input
                   type="text"
                   placeholder="Search"
@@ -36,8 +32,6 @@ function employee() {
                 />
               </label>
 
-              <FilterIcon />
-              <GridIcon />
               <button
                 className="text-white bg-[#202020] rounded-full border-2 border-[#202020]  px-6 py-1 mx-1 flex items-center hover:drop-shadow-md"
                 onClick={addEmployeeButton}

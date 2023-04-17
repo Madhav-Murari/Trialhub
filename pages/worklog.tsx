@@ -1,5 +1,5 @@
 import React from 'react'
-import Worklog from './components/worklog'
+import Worklog from '../src/components/worklog'
 
 export default function worklog() {
   return (

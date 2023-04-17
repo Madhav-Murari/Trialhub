@@ -1,5 +1,5 @@
 import React from "react";
-import LeavePage from "../pages/components/Leave/LeavePage";
+import LeavePage from "../src/components/Leave/LeavePage";
 
 function leave() {
   return (
