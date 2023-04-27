@@ -4,7 +4,6 @@ import Attendance from '../src/components/Attendance/Attendance'
 function attendence() {
   return (
     <div>
-      {/* attendence */}
       <Attendance />
     </div>
   )

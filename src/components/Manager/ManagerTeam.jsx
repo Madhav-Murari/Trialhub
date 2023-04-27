@@ -4,11 +4,8 @@ import Image from "next/image";
 import { TiMessages } from "react-icons/ti";
 import Suraj from "../../assets/Suraj.png";
 import TeamCard from "./TeamCard";
-import Deep from "../../assets/Deep.png";
-import Priya from "../../assets/Priya.png";
-import Mohit from "../../assets/Mohit.png";
-import Shreya from "../../assets/Shreya.png";
-import Prince from "../../assets/Prince.png";
+import TeamData from "./TeamData.json";
+import Link from "next/link";
 
 export default function ManagerTeam() {
   return (
@@ -68,33 +65,20 @@ export default function ManagerTeam() {
           Team Members
         </div>
         <div className="flex flex-row md:flex-col my-8 mx-auto">
-          <div className="flex flex-wrap">
-            <TeamCard
-              designation="Frontend Developer"
-              name={Prince}
-              username="Prince Rajan"
-            />
-            <TeamCard
-              designation="Backend Developer"
-              name={Priya}
-              username="Priya Seth"
-            />
-            <TeamCard
-              designation="UI/UX Designer"
-              name={Deep}
-              username="Deep Singh"
-            />
-            <TeamCard
-              designation="Graphic Designer"
-              name={Shreya}
-              username="Shreya Verma"
-            />
-            <TeamCard
-              designation="Content Writer"
-              name={Mohit}
-              username="Mohit Raj"
-            />
-          </div>
+          <Link href="/employee/profile" className="flex flex-wrap">
+            {TeamData &&
+              TeamData.map((team, index) => {
+                return (
+                  <TeamCard
+                    key={index}
+                    name={team.name}
+                    photo={team.photo}
+                    username={team.username}
+                    designation={team.designation}
+                  />
+                );
+              })}
+          </Link>
         </div>
       </div>
     </>

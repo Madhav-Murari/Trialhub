@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Manish Singh",
+    "photo": "https://www.vayak.net/images/employee.jpg",
+    "username": "manish123",
+    "designation": "Frontend Developer "
+  },
+  {
+    "name": "Shubhi Sen",
+    "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZW1wbG95ZWV8ZW58MHx8MHx8&w=1000&q=80",
+    "username": "shubh123",
+    "designation": "Backend Developer "
+  },
+  {
+    "name": "Arshi Khan",
+    "photo": "https://thumbs.dreamstime.com/b/attractive-businesswoman-sitting-office-18068697.jpg",
+    "username": "arif123",
+    "designation": "Managing Menber "
+  },
+  {
+    "name": "Mr. Rajan",
+    "photo": "https://www.shutterstock.com/image-photo/young-indian-asian-man-wearing-260nw-2135489165.jpg",
+    "username": "raj123",
+    "designation": "Content Writer "
+  },
+  {
+    "name": "Amisha Trivedi",
+    "photo": "https://thumbs.dreamstime.com/b/businessman-interviewing-female-job-candidate-interviews-62922224.jpg",
+    "username": "amu123",
+    "designation": "Designer "
+  }
+]
