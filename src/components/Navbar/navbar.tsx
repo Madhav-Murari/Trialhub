@@ -15,7 +15,7 @@ function Navbar() {
   return (
     <div className="w-full h-14 border-b px-4 flex items-center justify-between bg-white">
       <Link href="/">
-        <h1 className="font-semibold text-lg md:text-base px-4">TRIALSHOPPY</h1>
+        <h1 className="font-semibold text-lg md:text-base px-4">TRIALHUB</h1>
       </Link>
 
       <button
