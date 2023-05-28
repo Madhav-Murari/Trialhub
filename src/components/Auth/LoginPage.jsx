@@ -23,7 +23,7 @@ export default function LoginPage() {
           <div className="flex max-w-4xl bg-white shadow-2xl w-7/8 lg:w-2/3 rounded-2xl sm:shrink-0">
             <div className="flex flex-col w-full px-6 py-2 md:w-1/2 md:p-16 ">
               <div className="font-bold text-left">
-                <span className="text-orange-400">Trail</span>
+                <span className="text-orange-400">Trial</span>
                 Shoppy
               </div>
               <div className="py-10">
