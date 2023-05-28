@@ -24,7 +24,7 @@ export default function LoginPage() {
             <div className="flex flex-col w-full px-6 py-2 md:w-1/2 md:p-16 ">
               <div className="font-bold text-left">
                 <span className="text-orange-400">Trial</span>
-                Shoppy
+                Hub
               </div>
               <div className="py-10">
                 <h2 className="mb-2 text-2xl font-bold">Sign in to Account</h2>
