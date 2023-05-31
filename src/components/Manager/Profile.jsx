@@ -2,7 +2,17 @@ import React from "react";
 import { HiLocationMarker } from "react-icons/hi";
 import { FiMessageSquare } from "react-icons/fi";
 
-function Profile() {
+function Profile({ userDetails }) {
+  const {
+    phone_number,
+    email,
+    name,
+    profilePic,
+    dateOfBirth,
+    role,
+    skills,
+    addressDetails,
+  } = userDetails;
   return (
     <>
       <div className="flex w-full h-full pb-40 bg-[#E3D5CA] pr-100 overflow-x-hidden flex-col sm:flex-row ">
@@ -10,7 +20,7 @@ function Profile() {
           <div className="w-1/3 mx-4 sm:w-full sm:mx-0 ">
             <div className="sm:flex sm:items-center sm:justify-center">
               <img
-                src="https://www.vayak.net/images/employee.jpg"
+                src={profilePic}
                 width="100%"
                 className="rounded"
               />
@@ -26,18 +36,16 @@ function Profile() {
             <div className="hidden sm:block">
               <div className=" lg:text-[32px] text-[22px]  ">Skills</div>
               <div className="flexflex-col text-[#5983D3]">
-                <p>Figma</p>
-                <p>AdobeXD</p>
-                <p>Web Design</p>
-                <p>UI Design</p>
-                <p>UX Research</p>
+              {skills && skills.map((skill, index) => (
+                  <p key={index}>{skill}</p>
+                ))}
               </div>
             </div>
           </div>
         </div>
         <div className="w-4/5 bg-[#E3D5CA] sm:mx-0 mx-6">
           <div className=" mt-[43px] lg:text-[40px] text-[30px] text-gray-900   flex flex-col lg:flex-row font-semibold">
-            <span>Mohit Kumar</span>
+            <span>{name}</span>
             <span>
               <span className="flex mx-8 text-[30px] lg:mt-[33px] text-[#747474] ">
                 <HiLocationMarker />
@@ -45,13 +53,13 @@ function Profile() {
               </span>
             </span>
           </div>
-          <div className="lg:text-[20px] text-[16px] text-[#3A86FF] my-2">
+          {/* <div className="lg:text-[20px] text-[16px] text-[#3A86FF] my-2">
             UI/UX Designer
-          </div>
-          <div className="lg:text-[26px] text-[22px]   my-2">
+          </div> */}
+          {/* <div className="lg:text-[26px] text-[22px]   my-2">
             Start Date : 2-1-2023
-          </div>
-          <div className="lg:text-[26px] text-[22px]  ">Role : Employee</div>
+          </div> */}
+          <div className="lg:text-[26px] text-[22px]  ">Role : {role}</div>
           <div className="lg:text-[20px] text-[16px]  flex my-4 flex-col lg:flex-row ">
             <span className="flex my-3 lg:my-0">
               <span className=" mt-[12px] text-[#747474]">
@@ -77,32 +85,31 @@ function Profile() {
             Contact Information
           </div>
           <div className="lg:text-[26px] text-[22px]   my-2">
-            Phone :<span className="text-[#3A86FF]">+91624579242</span>{" "}
+            Phone :<span className="text-[#3A86FF]">{phone_number}</span>{" "}
           </div>
           <div className="lg:text-[26px] text-[22px]  my-2">
-            Email : Mohitkr@gmail.com
+            Email : {email}
           </div>
           <div className="lg:text-[26px] text-[22px]  my-2">
-            Address : Ashok nagar , patna , Bihar, 800001
+            Address : {addressDetails.addressLine1}, {addressDetails.townORcity},{" "}
+            {addressDetails.state}, {addressDetails.pinCode}, {addressDetails.country}
           </div>
-          <div className="lg:text-[20px] text-[16px]  my-2">
+          {/* <div className="lg:text-[20px] text-[16px]  my-2">
             Website : Mohitsite.com
-          </div>
+          </div> */}
           <div className="lg:text-[32px] text-[28px]  my-3 text-[#747474]">
             Basic Information
           </div>
           <div className="lg:text-[26px] text-[22px]  my-2">
-            Birthday : 30 JUNE
+            Birthday : {dateOfBirth}
           </div>
-          <div className="lg:text-[26px] text-[22px]   my-2">GENDER : MALE</div>
+          {/* <div className="lg:text-[26px] text-[22px]   my-2">GENDER : MALE</div> */}
           <div className="block sm:hidden">
             <div className=" lg:text-[32px] text-[28px] ">Skills</div>
             <div className="flexflex-col text-[#5983D3]">
-              <p>Figma</p>
-              <p>AdobeXD</p>
-              <p>Web Design</p>
-              <p>UI Design</p>
-              <p>UX Research</p>
+            {skills && skills.map((skill, index) => (
+                <p key={index}>{skill}</p>
+              ))}
             </div>
           </div>
         </div>
