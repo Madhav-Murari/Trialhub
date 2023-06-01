@@ -26,7 +26,7 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:7000/api/v1/login",
+        "https://trialhub-backend.onrender.com/api/v1/login",
         formData
       );
       console.log(res);
