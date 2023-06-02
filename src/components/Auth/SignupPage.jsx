@@ -26,11 +26,21 @@ export default function SignupPage() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:7000/api/v1/userSignUp",
+        "https://trialhub-backend.onrender.com/api/v1/userSignUp",
         formData
       );
       console.log(res);
-      router.push('/dashboard');
+      if (res.data) {
+        const userData = {
+          userId: res.data._id,
+          clientId: res.data.clientId
+        };
+        localStorage.setItem("userData", JSON.stringify(userData));
+        router.push('/dashboard');
+      }
+      else{
+        alert('Signup failed');
+      }
     } catch (err) {
       console.log(err);
     }
