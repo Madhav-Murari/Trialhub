@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import LinkTo from "./LinkTo";
 import BurgerIcon from "../icons/BurgerIcon";
 import CloseIcon from "../icons/CloseIcon";
+import { useRouter } from "next/router";
 
-function Navbar() {
+const Navbar = () => {
   const [display, setDisplay] = useState("hidden");
+  const [auth, setAuth] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const userDataString = localStorage.getItem("userData");
+    if (userDataString) {
+      setAuth(JSON.parse(userDataString));
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   if (!auth) {
+  //     router.push("/login");
+  //   }
+  // }, [auth]);
 
   function clickHandler() {
     if (display == "hidden") setDisplay("block");
     else setDisplay("hidden");
   }
 
+  function logoutHandler() {
+    localStorage.removeItem("userData");
+    setAuth(null);
+    router.push("/login");
+  }
   return (
     <div className="w-full h-14 border-b px-4 flex items-center justify-between bg-white">
       <Link href="/">
@@ -38,23 +59,33 @@ function Navbar() {
         <LinkTo linkTo="meeting" />
         <LinkTo linkTo="leave" />
 
-        <div className="flex flex-row">
-          <Link
+        {!auth ? (
+          <div className="flex flex-row">
+            <Link
+              href="/login"
+              className="text-[#202020] border-2 border-[#202020] rounded-full  px-6 py-1 mx-1 flex items-center"
+            >
+              Login
+            </Link>
+            <Link
+              href="/signup"
+              className="text-[#ffffff] bg-[#202020] border-2 border-[#202020] rounded-full  px-6 py-1 mx-1 flex items-center"
+            >
+              Signup
+            </Link>
+          </div>
+        ) : (
+          <a
             href="/login"
-            className="text-[#202020] border-2 border-[#202020] rounded-full  px-6 py-1 mx-1 flex items-center"
-          >
-            Login
-          </Link>
-          <Link
-            href="/signup"
+            onClick={logoutHandler}
             className="text-[#ffffff] bg-[#202020] border-2 border-[#202020] rounded-full  px-6 py-1 mx-1 flex items-center"
           >
-            Signup
-          </Link>
-        </div>
+            Logout
+          </a>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;
