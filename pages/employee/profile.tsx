@@ -24,7 +24,6 @@ interface UserDetails {
   dateOfBirth: string;
   role: string;
   parent: string;
-  __v: number;
 }
 
 interface uData {

@@ -11,7 +11,6 @@ function Profile({ userDetails }) {
     dateOfBirth,
     role,
     skills,
-    addressDetails,
   } = userDetails;
   return (
     <>
@@ -91,8 +90,7 @@ function Profile({ userDetails }) {
             Email : {email}
           </div>
           <div className="lg:text-[26px] text-[22px]  my-2">
-            Address : {addressDetails.addressLine1}, {addressDetails.townORcity},{" "}
-            {addressDetails.state}, {addressDetails.pinCode}, {addressDetails.country}
+            Address : Patna,India
           </div>
           {/* <div className="lg:text-[20px] text-[16px]  my-2">
             Website : Mohitsite.com
