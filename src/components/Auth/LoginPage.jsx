@@ -30,7 +30,19 @@ export default function LoginPage() {
         formData
       );
       console.log(res);
-      router.push('/dashboard');
+  
+      if (res.data.Login === "Succesful") {
+        const userData = {
+          userId: res.data.UserData._id,
+          clientId: res.data.UserData.clientId
+        };
+        console.log(userData);
+        localStorage.setItem("userData", JSON.stringify(userData));
+
+        router.push('/dashboard');
+      } else {
+        alert(res.data.Comment)
+      }
     } catch (err) {
       console.log(err);
     }

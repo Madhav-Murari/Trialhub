@@ -1,49 +1,64 @@
 import React, { useState, useEffect } from "react";
 import Profile from "../../src/components/Manager/Profile";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 interface UserDetails {
-  phone_number: string;
+  coverage: {
+    working_hours: {
+      [key: string]: any[];
+    };
+    alternate_working_days: any[];
+    partial_working_hours: any[];
+    holidays: any[];
+  };
+  paidHolidayRemaining: string;
+  password: string;
+  skills: any[];
+  language: any[];
+  _id: string;
   email: string;
+  phone_number: string;
   name: string;
-  profilePic: string;
+  clientId: string;
   dateOfBirth: string;
   role: string;
-  skills: string[];
-  addressDetails: {
-    addressLine1: string;
-    townORcity: string;
-    pinCode: string;
-    state: string;
-    country: string;
-  };
+  parent: string;
 }
 
-interface ProfilePageProps {
+interface uData {
   clientId: string;
   userId: string;
 }
 
-const ProfilePage: React.FC<ProfilePageProps> = (props) => {
+const ProfilePage = () => {
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
-  const { clientId, userId } = props;
-  const apiurl = `https://trialhub-backend.onrender.com/api/v1/${clientId}/user/${userId}`;
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await fetch(apiurl);
-        if (response.ok) {
-          const data: UserDetails = await response.json();
-          setUserDetails(data);
-        } else {
-          console.error("Failed to fetch user details");
-        }
-      } catch (error) {
-        console.error("Error: ", error);
-      }
-    };
+    const userDataString: string | null = localStorage.getItem("userData");
+    if (!userDataString) {
+      router.push("/login");
+      return;
+    }
 
-    fetchUserDetails();
+    try {
+      const uData: uData = JSON.parse(userDataString);
+      const userId = uData.userId;
+      const clientId = uData.clientId;
+      axios
+        .get(
+          `https://trialhub-backend.onrender.com/api/v1/${clientId}/user/${userId}`
+        )
+        .then((response) => {
+          setUserDetails(response.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } catch (err) {
+      console.error(err);
+    }
   }, []);
 
   return (

@@ -2,10 +2,14 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FaRegEnvelope, FaUserTie } from "react-icons/fa";
+import {
+  FaRegEnvelope,
+  FaUserTie,
+  FaUserLock,
+  FaUserCog,
+} from "react-icons/fa";
 import { BsBuilding } from "react-icons/bs";
 import axios from "axios";
-
 
 export default function SignupPage() {
   const router = useRouter();
@@ -13,6 +17,9 @@ export default function SignupPage() {
     email: "",
     name: "",
     clientId: "",
+    password: "",
+    role: "superadmin",//default role
+
   });
 
   const handleChange = (e) => {
@@ -20,21 +27,30 @@ export default function SignupPage() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:7000/api/v1/userSignUp",
+        "https://trialhub-backend.onrender.com/api/v1/userSignUp",
         formData
       );
       console.log(res);
-      router.push('/dashboard');
+      if (res.data) {
+        const userData = {
+          userId: res.data._id,
+          clientId: res.data.clientId,
+        };
+        localStorage.setItem("userData", JSON.stringify(userData));
+        router.push("/dashboard");
+      } else {
+        alert("Signup failed");
+      }
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <>
@@ -75,13 +91,26 @@ export default function SignupPage() {
                       className="flex-1 text-sm bg-gray-100 outline-none "
                       type="text"
                       name="name"
-                      placeholder="Company Name"
+                      placeholder="Name"
                       onChange={handleChange}
                       value={formData.name}
                       required
                     />
                   </div>
-
+                  <div className="flex items-center w-64 p-2 bg-gray-100">
+                    <FaUserCog className="text=gray-300 mr-2" />
+                    <select
+                      className="flex-1 text-sm bg-gray-100 outline-none"
+                      name="role"
+                      value={formData.role}
+                      onChange={handleChange}
+                    >
+                      <option value="superAdmin">Super Admin</option>
+                      <option value="admin">Admin</option>
+                      <option value="manager">Manager</option>
+                      <option value="employee">Employee</option>
+                    </select>
+                  </div>
                   <div className="flex items-center w-64 p-2 bg-gray-100 ">
                     <FaUserTie className="text=gray-300 mr-2" />
                     <input
@@ -95,11 +124,19 @@ export default function SignupPage() {
                     />
                   </div>
 
-                  <div className="flex justify-end w-64 mb-5">
-                    <Link href="/login" className="text-sm">
-                      Forgot Password?
-                    </Link>
+                  <div className="flex items-center w-64 p-2 bg-gray-100 ">
+                    <FaUserLock className="text=gray-300 mr-2" />
+                    <input
+                      className="flex-1 text-sm bg-gray-100 outline-none "
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={handleChange}
+                      value={formData.password}
+                      required
+                    />
                   </div>
+
 
                   <button
                     // href="/dashboard"
