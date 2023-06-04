@@ -3,107 +3,27 @@ import React, { useState, useEffect } from "react";
 import WorkBox from "./WorkBox";
 import axios from "axios";
 import { useRouter } from "next/router";
-
-interface UserDetails {
-  coverage: {
-    working_hours: {
-      [key: string]: any[];
-    };
-    alternate_working_days: any[];
-    partial_working_hours: any[];
-    holidays: any[];
-  };
-  paidHolidayRemaining: string;
-  password: string;
-  skills: any[];
-  language: any[];
-  _id: string;
-  email: string;
-  phone_number: string;
-  name: string;
-  clientId: string;
-  dateOfBirth: string;
-  role: string;
-  parent: string;
-  __v: number;
-}
-//task
-interface TaskDetails {
-  userId: string;
-  clientId: string;
-  task: string;
-  status: string;
-  startDate: string;
-  endDate: string;
-}
-
-//meeting
-interface MeetingDetails {
-  totalCount: number;
-  page: number;
-  limit: number;
-  data: any[];
-  totalUsers: any[];
-}
-
-//attendence
-interface TimeCollection {
-  date?: string;
-  clock_in_time?: string;
-  clock_out_time?: string;
-}
-
-interface AttendanceRequest {
-  date?: string;
-  complain?: string;
-}
-
-interface AttendanceDetails {
-  userId: string;
-  clientId: string;
-  status: string;
-  attendance: {
-    timeCollection: TimeCollection[];
-    request: AttendanceRequest[];
-  };
-}
-interface AuthData {
-  userId: string;
-  clientId: string;
-}
-
-function calculateTotalTimeWorked(entry: TimeCollection): string {
-  const clockInTime = new Date(`1970-01-01T${entry.clock_in_time}`);
-  const clockOutTime = new Date(`1970-01-01T${entry.clock_out_time}`);
-  const timeDiff = clockOutTime.getTime() - clockInTime.getTime();
-
-  const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-  const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
-  const seconds = Math.floor((timeDiff / 1000) % 60);
-
-  return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
-}
-
-function padZero(number: number): string {
-  return number.toString().padStart(2, "0");
-}
-
-function calculateHeight(entry: TimeCollection): string {
-  const clockInTime = new Date(`1970-01-01T${entry.clock_in_time}`);
-  const clockOutTime = new Date(`1970-01-01T${entry.clock_out_time}`);
-  const timeDiff = clockOutTime.getTime() - clockInTime.getTime();
-
-  const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-
-  return `${hours}`;
-}
+import {
+  UserDetails,
+  TaskDetails,
+  MeetingDetails,
+  AttendanceDetails,
+  AuthData,
+} from "./dashboardTypes";
+import { calculateTotalTimeWorked, calculateHeight } from "./dashboardUtils";
+import {
+  fetchUserData,
+  fetchTaskData,
+  fetchMeetingData,
+  fetchAttendanceData,
+} from "./dashboardApi";
 
 export function Dashboard() {
   const [userData, setUserData] = useState<UserDetails | null>(null);
   const userDataString: string | null = localStorage.getItem("userData");
   const [taskData, setTaskData] = useState<TaskDetails | null>(null);
   const [meetingData, setMeetingData] = useState<MeetingDetails | null>(null);
-  const [attendanceData, setAttendenceData] =
+  const [attendanceData, setAttendanceData] =
     useState<AttendanceDetails | null>(null);
   const router = useRouter();
 
@@ -117,52 +37,42 @@ export function Dashboard() {
       const userId = authData.userId;
       const clientId = authData.clientId;
 
-      //user data
-      axios
-        .get(
-          `https://trialhub-backend.onrender.com/api/v1/${clientId}/user/${userId}`
-        )
+      // Fetch user data
+      fetchUserData(clientId, userId)
         .then((response) => {
-          setUserData(response.data);
+          setUserData(response);
         })
         .catch((err) => {
           console.error(err);
         });
 
-      //task data
-      axios
-        .get(
-          `https://trialhub-backend.onrender.com/api/v1/${clientId}/task/${userId}`
-        )
+      // Fetch task data
+      fetchTaskData(clientId, userId)
         .then((response) => {
-          setTaskData(response.data);
+          setTaskData(response);
         })
         .catch((err) => {
           console.error(err);
         });
 
-      //meeting data
-      axios
-        .get(`https://trialhub-backend.onrender.com/api/v1/${clientId}/meeting`)
+      // Fetch meeting data
+      fetchMeetingData(clientId)
         .then((response) => {
-          setMeetingData(response.data);
+          setMeetingData(response);
         })
         .catch((err) => {
           console.error(err);
         });
 
-      //attendence data
-      axios
-        .get(
-          `https://trialhub-backend.onrender.com/api/v1/attendance/${userId}`
-        )
+      // Fetch attendance data
+      fetchAttendanceData(userId)
         .then((response) => {
-          setAttendenceData(response.data);
+          setAttendanceData(response);
         })
         .catch((err) => {
           console.log(err);
         });
-      // setAttendenceData({
+      // setAttendanceData({
       //   userId: "",
       //   clientId: "Mah123",
       //   status: "active",
