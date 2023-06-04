@@ -20,14 +20,14 @@ import {
 
 export function Dashboard() {
   const [userData, setUserData] = useState<UserDetails | null>(null);
-  const userDataString: string | null = localStorage.getItem("userData");
   const [taskData, setTaskData] = useState<TaskDetails | null>(null);
   const [meetingData, setMeetingData] = useState<MeetingDetails | null>(null);
   const [attendanceData, setAttendanceData] =
-    useState<AttendanceDetails | null>(null);
+  useState<AttendanceDetails | null>(null);
   const router = useRouter();
-
+  
   useEffect(() => {
+    const userDataString: string | null = localStorage.getItem("userData");
     if (!userDataString) {
       router.push("/login");
       return;
@@ -110,7 +110,7 @@ export function Dashboard() {
     } catch (err) {
       console.error(err);
     }
-  }, [userDataString]);
+  }, []);
 
   console.log(userData);
 

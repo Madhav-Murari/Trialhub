@@ -33,15 +33,15 @@ interface uData {
 
 const ProfilePage = () => {
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
-  const userDataString: string|null = localStorage.getItem("userData");
   const router = useRouter();
 
   useEffect(() => {
+    const userDataString: string | null = localStorage.getItem("userData");
     if (!userDataString) {
       router.push("/login");
       return;
     }
-    
+
     try {
       const uData: uData = JSON.parse(userDataString);
       const userId = uData.userId;
@@ -59,8 +59,7 @@ const ProfilePage = () => {
     } catch (err) {
       console.error(err);
     }
-
-  }, [userDataString]);
+  }, []);
 
   return (
     <>
