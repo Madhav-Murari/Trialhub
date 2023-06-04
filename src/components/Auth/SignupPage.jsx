@@ -91,7 +91,7 @@ export default function SignupPage() {
                       className="flex-1 text-sm bg-gray-100 outline-none "
                       type="text"
                       name="name"
-                      placeholder="Company Name"
+                      placeholder="Name"
                       onChange={handleChange}
                       value={formData.name}
                       required
