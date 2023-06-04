@@ -27,15 +27,84 @@ interface UserDetails {
   parent: string;
   __v: number;
 }
+//task
+interface TaskDetails {
+  userId: string;
+  clientId: string;
+  task: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+}
 
-interface uData{
-  userId : string,
-  clientId : string
+//meeting
+interface MeetingDetails {
+  totalCount: number;
+  page: number;
+  limit: number;
+  data: any[];
+  totalUsers: any[];
+}
+
+//attendence
+interface TimeCollection {
+  date?: string;
+  clock_in_time?: string;
+  clock_out_time?: string;
+}
+
+interface AttendanceRequest {
+  date?: string;
+  complain?: string;
+}
+
+interface AttendanceDetails {
+  userId: string;
+  clientId: string;
+  status: string;
+  attendance: {
+    timeCollection: TimeCollection[];
+    request: AttendanceRequest[];
+  };
+}
+interface AuthData {
+  userId: string;
+  clientId: string;
+}
+
+function calculateTotalTimeWorked(entry: TimeCollection): string {
+  const clockInTime = new Date(`1970-01-01T${entry.clock_in_time}`);
+  const clockOutTime = new Date(`1970-01-01T${entry.clock_out_time}`);
+  const timeDiff = clockOutTime.getTime() - clockInTime.getTime();
+
+  const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+  const seconds = Math.floor((timeDiff / 1000) % 60);
+
+  return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+}
+
+function padZero(number: number): string {
+  return number.toString().padStart(2, "0");
+}
+
+function calculateHeight(entry: TimeCollection): string {
+  const clockInTime = new Date(`1970-01-01T${entry.clock_in_time}`);
+  const clockOutTime = new Date(`1970-01-01T${entry.clock_out_time}`);
+  const timeDiff = clockOutTime.getTime() - clockInTime.getTime();
+
+  const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+
+  return `${hours}`;
 }
 
 export function Dashboard() {
   const [userData, setUserData] = useState<UserDetails | null>(null);
-  const userDataString: string|null= localStorage.getItem("userData");
+  const userDataString: string | null = localStorage.getItem("userData");
+  const [taskData, setTaskData] = useState<TaskDetails | null>(null);
+  const [meetingData, setMeetingData] = useState<MeetingDetails | null>(null);
+  const [attendanceData, setAttendenceData] =
+    useState<AttendanceDetails | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,9 +113,11 @@ export function Dashboard() {
       return;
     }
     try {
-      const uData: uData = JSON.parse(userDataString);
-      const userId = uData.userId;
-      const clientId = uData.clientId;
+      const authData: AuthData = JSON.parse(userDataString);
+      const userId = authData.userId;
+      const clientId = authData.clientId;
+
+      //user data
       axios
         .get(
           `https://trialhub-backend.onrender.com/api/v1/${clientId}/user/${userId}`
@@ -57,6 +128,75 @@ export function Dashboard() {
         .catch((err) => {
           console.error(err);
         });
+
+      //task data
+      axios
+        .get(
+          `https://trialhub-backend.onrender.com/api/v1/${clientId}/task/${userId}`
+        )
+        .then((response) => {
+          setTaskData(response.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+      //meeting data
+      axios
+        .get(`https://trialhub-backend.onrender.com/api/v1/${clientId}/meeting`)
+        .then((response) => {
+          setMeetingData(response.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+      //attendence data
+      axios
+        .get(
+          `https://trialhub-backend.onrender.com/api/v1/attendance/${userId}`
+        )
+        .then((response) => {
+          setAttendenceData(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // setAttendenceData({
+      //   userId: "",
+      //   clientId: "Mah123",
+      //   status: "active",
+      //   attendance: {
+      //     timeCollection: [
+      //       {
+      //         date: "05-06-2023",
+      //         clock_in_time: "11:31:00",
+      //         clock_out_time: "15:30:00",
+      //       },
+      //       {
+      //         date: "04-06-2023",
+      //         clock_in_time: "11:31:00",
+      //         clock_out_time: "15:30:00",
+      //       },
+      //       {
+      //         date: "03-06-2023",
+      //         clock_in_time: "09:31:00",
+      //         clock_out_time: "20:30:00",
+      //       },
+      //       {
+      //         date: "02-06-2023",
+      //         clock_in_time: "10:31:00",
+      //         clock_out_time: "18:30:00",
+      //       },
+      //       {
+      //         date: "01-06-2023",
+      //         clock_in_time: "11:31:00",
+      //         clock_out_time: "17:30:00",
+      //       },
+      //     ],
+      //     request: [],
+      //   },
+      // });
     } catch (err) {
       console.error(err);
     }
@@ -111,43 +251,51 @@ export function Dashboard() {
                     <h4>Clock In Time</h4>
                   </div>
                   <div className="flex justify-between">
-                    <h2>16 JUN 2023</h2>
-                    <h3 className="text-red-400">10:15:56</h3>
+                    <h2>
+                      {attendanceData &&
+                        attendanceData.attendance.timeCollection[0].date}
+                    </h2>
+                    <h3 className="text-red-400">
+                      {attendanceData &&
+                        attendanceData.attendance.timeCollection[0]
+                          .clock_in_time}
+                    </h3>
                   </div>
                 </div>
                 <div>
                   <div className="flex justify-between">
-                    <h1 className="text-green-400 text-[30px]">05:18:32</h1>
+                    <h1 className="text-green-400 text-[30px]">
+                      {attendanceData &&
+                        calculateTotalTimeWorked(
+                          attendanceData.attendance.timeCollection[0]
+                        )}
+                    </h1>
                     <h4>Clock Out Time</h4>
                   </div>
                   <div className="flex justify-between">
                     <h2>Total Time Worked</h2>
-                    <h3 className="text-yellow-400">00:00:00</h3>
+                    <h3 className="text-yellow-400">
+                      {attendanceData &&
+                        attendanceData.attendance.timeCollection[0]
+                          .clock_out_time}
+                    </h3>
                   </div>
                 </div>
               </div>
               <div className="md:w-2/5 h-full flex justify-center items-end bg-white">
-                <div className="w-8 h-[24px] mx-2 bg-green-500 flex  justify-center items-end text-[10px]">
-                  DAY 1
-                </div>
-                <div className="w-8 h-[64px] mx-2 bg-green-500 flex  justify-center items-end text-[10px]">
-                  DAY 2
-                </div>
-                <div className="w-8 h-[48px] mx-2 bg-green-500 flex  justify-center items-end text-[10px]">
-                  DAY 3
-                </div>
-                <div className="w-8 h-[100px] mx-2 bg-green-500 flex  justify-center items-end text-[10px]">
-                  DAY 4
-                </div>
-                <div className="w-8 h-[50px] mx-2 bg-green-500 flex  justify-center items-end text-[10px]">
-                  DAY 5
-                </div>
-                <div className="w-8 h-[20px] mx-2 bg-green-500 flex  justify-center items-end text-[10px]">
-                  DAY 6
-                </div>
-                <div className="w-8 h-[60px] mx-2 bg-green-500 flex  justify-center items-end text-[10px]">
-                  DAY 7
-                </div>
+                {attendanceData &&
+                  attendanceData.attendance.timeCollection
+                    .slice(0, 7)
+                    .map((entry, index) => (
+                      <div
+                        className={`w-8 h-${calculateHeight(
+                          entry
+                        )} mx-2 bg-green-500 flex justify-center items-end text-[10px]`}
+                        key={index}
+                      >
+                        DAY {index + 1}
+                      </div>
+                    ))}
               </div>
             </div>
             <div className="h-1/10 py-4 bg-white flex flex-wrap justify-around">
