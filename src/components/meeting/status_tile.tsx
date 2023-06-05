@@ -1,21 +1,21 @@
 import React from "react";
 
 interface props{
-    status:number,
+    status:String,
 }
 
 const StatusTile: React.FC<props> = ({status}) => {
     var col = "blue"
     var statusText = "Notify"
-    if(status === 1){
+    if(status === "Completed"){
         col = "bg-green-400";
         statusText = "Completed";
     }
-    else if(status === 2){
+    else if(status === "Upcoming"){
         col = "bg-yellow-400";
         statusText = "Upcoming"
     }
-    else if(status === 3){
+    else if(status === "Notify"){
         col = "bg-blue-400";
         statusText = "Notify";
     }
