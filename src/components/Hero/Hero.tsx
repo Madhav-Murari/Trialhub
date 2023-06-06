@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import HeroImage from '../../assets/HeroImage.svg';
 import Image from 'next/image';
 import Footer from './Footer';
+import Link from 'next/link';
 
 const Hero: React.FC = () => {
+    const [auth, setAuth] = useState(null);
+
+    useEffect(() => {
+        const userDataString = localStorage.getItem("userData");
+        if (userDataString) {
+            setAuth(JSON.parse(userDataString));
+        }
+    }, []);
+
     return (
         <div className="min-h-screen bg-gray-100">
             {/* Hero Section */}
-            <section className="flex flex-col items-center justify-center py-20">
+            <section className="flex flex-col items-center justify-center py-10">
                 <div className="text-[2rem] md:text-[3rem] font-bold text-gray-800">Welcome to Trialhub</div>
                 <p className="mt-4 text-lg text-gray-600">Efficient Employee Management Services</p>
-                <Image className="mt-12 w-2/3 md:w-2/3 lg:w-2/4" src={HeroImage} alt="Hero" />
+                <Link href={auth ? "/dashboard" : "/signup"} className='bg-[#FF725E] text-white rounded-md px-4 py-2 my-3'>{auth ? 'Go to dashboard' : 'Join us now'}</Link>
+                <Image className="w-3/3 md:w-2/3 lg:w-2/4" src={HeroImage} alt="Hero" />
             </section>
 
             {/* Features Section */}
