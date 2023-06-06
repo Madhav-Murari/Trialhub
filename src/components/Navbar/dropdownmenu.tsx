@@ -32,7 +32,7 @@ const DropdownMenu: React.FC = () => {
       </button>
       {isOpen && (
         <div
-          className="absolute top-[35px] left-0 md:right-0 mt-2 w-40 bg-white border border-gray-200 divide-y divide-gray-200 rounded shadow"
+          className="absolute top-[35px] left-0 md:right-0 z-10 mt-2 w-40 bg-white divide-y divide-gray-200 rounded shadow"
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
         >

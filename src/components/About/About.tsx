@@ -29,7 +29,7 @@ const About: React.FC = () => {
                     reach out to our team. You can contact us via email, phone, or through the contact form on our website.
                 </p>
                 <div className="flex justify-center">
-                    <button className="px-6 py-3 bg-[#FF725E] text-white font-bold rounded-md">
+                    <button className="px-6 py-3 bg-primary text-white font-bold rounded-md">
                         Contact Us
                     </button>
                 </div>

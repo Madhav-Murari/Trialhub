@@ -7,7 +7,7 @@ interface Props {
 
 const LinkTo: React.FC<Props> = ({ linkTo = "" }) => {
   return (
-    <div className="flex items-center text-xl md:text-base px-4 py-2 hover:text-[#FF725E]">
+    <div className="flex items-center text-xl md:text-base px-4 py-2 hover:text-primary">
       <Link href={"/" + linkTo}>{linkTo.charAt(0).toUpperCase() + linkTo.slice(1)}</Link>
     </div>
   );
