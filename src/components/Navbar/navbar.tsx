@@ -4,6 +4,7 @@ import LinkTo from "./LinkTo";
 import BurgerIcon from "../icons/BurgerIcon";
 import CloseIcon from "../icons/CloseIcon";
 import { useRouter } from "next/router";
+import DropdownMenu from "./dropdownmenu";
 
 const Navbar = () => {
   const [display, setDisplay] = useState("hidden");
@@ -17,12 +18,6 @@ const Navbar = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (!auth) {
-  //     router.push("/login");
-  //   }
-  // }, [auth]);
-
   function clickHandler() {
     if (display == "hidden") setDisplay("block");
     else setDisplay("hidden");
@@ -34,7 +29,7 @@ const Navbar = () => {
     router.push("/login");
   }
   return (
-    <div className="w-full h-14 border-b px-4 flex items-center justify-between bg-white">
+    <div className="w-full h-[60px] border-b px-4 flex items-center justify-between bg-white">
       <Link href="/">
         <h1 className="font-semibold text-lg md:text-base px-4">TRIALHUB</h1>
       </Link>
@@ -46,22 +41,17 @@ const Navbar = () => {
       >
         <BurgerIcon />
       </button>
-
       <div
-        className={`w-full h-full p-4 ml-3 bg-orange-300 fixed top-0 right-0 items-center justify-between ${display} md:h-full md:flex md:static md:bg-white`}
+        className={`w-full md:shadow-none shadow-md h-fit p-4 ml-3 bg-white fixed top-[50px] right-0 items-center justify-between ${display} md:h-full md:flex md:static md:bg-white`}
       >
         <div className="md:hidden w-fit ml-auto" onClick={clickHandler}>
           <CloseIcon />
         </div>
-        {auth && (<>
-          <LinkTo linkTo="employee" />
-          <LinkTo linkTo="attendence" />
-          <LinkTo linkTo="tasks" />
-          <LinkTo linkTo="meeting" />
-          <LinkTo linkTo="leave" />
-          <LinkTo linkTo="dashboard" />
-        </>
-        )}
+          <div className="flex flex-col md:flex-row">
+            <LinkTo linkTo="about" />
+            <LinkTo linkTo="contact" />
+          </div>
+        {auth && <DropdownMenu />}
 
         {!auth ? (
           <div className="flex flex-row ml-auto">
