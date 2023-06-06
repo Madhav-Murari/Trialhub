@@ -53,14 +53,18 @@ const Navbar = () => {
         <div className="md:hidden w-fit ml-auto" onClick={clickHandler}>
           <CloseIcon />
         </div>
-        <LinkTo linkTo="employee" />
-        <LinkTo linkTo="attendence" />
-        <LinkTo linkTo="tasks" />
-        <LinkTo linkTo="meeting" />
-        <LinkTo linkTo="leave" />
+        {auth && (<>
+          <LinkTo linkTo="employee" />
+          <LinkTo linkTo="attendence" />
+          <LinkTo linkTo="tasks" />
+          <LinkTo linkTo="meeting" />
+          <LinkTo linkTo="leave" />
+          <LinkTo linkTo="dashboard" />
+        </>
+        )}
 
         {!auth ? (
-          <div className="flex flex-row">
+          <div className="flex flex-row ml-auto">
             <Link
               href="/login"
               className="text-[#202020] border-2 border-[#202020] rounded-full  px-6 py-1 mx-1 flex items-center"

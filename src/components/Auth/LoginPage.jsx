@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import {
   FaUserTie,
 } from "react-icons/fa";
@@ -9,7 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function LoginPage() {
-  const router = useRouter();
+  // const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -39,7 +38,8 @@ export default function LoginPage() {
         console.log(userData);
         localStorage.setItem("userData", JSON.stringify(userData));
 
-        router.push('/dashboard');
+        // router.push('/dashboard');
+        window.location.replace('/dashboard')
       } else {
         alert(res.data.Comment)
       }
