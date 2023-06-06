@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HeroImage from '../../assets/HeroImage.svg';
 import Image from 'next/image';
-import Footer from './Footer';
 import Link from 'next/link';
 
 const Hero: React.FC = () => {
@@ -50,9 +49,6 @@ const Hero: React.FC = () => {
                     </div>
                 </div>
             </section>
-
-            <Footer />
-
         </div>
     );
 };
