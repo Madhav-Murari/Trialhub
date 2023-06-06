@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/sidebar.tsx", "src/components/Leave/LeaveRightSidebar.js", "src/components/Leave/LeaveList.js", "src/components/Leave/LeaveLeftSide.js", "src/components/Leave/LeaveContent.js", "src/components/Leave/IntroCard.js", "component/Leave/introCard.js", "component/Leave/leaveContent.js", "component/Leave/leaveRightSidebar.js", "component/Leave/leaveList.js", "component/Leave/leaveLeftSide.js", "src/components/Manager/Profile.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/sidebar.tsx", "src/components/Leave/LeaveRightSidebar.js", "src/components/Leave/LeaveList.js", "src/components/Leave/LeaveLeftSide.js", "src/components/Leave/LeaveContent.js", "src/components/Leave/IntroCard.js", "component/Leave/introCard.js", "component/Leave/leaveContent.js", "component/Leave/leaveRightSidebar.js", "component/Leave/leaveList.js", "component/Leave/leaveLeftSide.js", "src/components/Manager/Profile.jsx", "pages/tasks/index.jsx"],
   "exclude": ["node_modules"]
 }
