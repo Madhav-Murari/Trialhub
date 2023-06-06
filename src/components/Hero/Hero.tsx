@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroImage from '../../assets/HeroImage.svg';
 import Image from 'next/image';
+import Footer from './Footer';
 
 const Hero: React.FC = () => {
     return (
@@ -39,24 +40,7 @@ const Hero: React.FC = () => {
                 </div>
             </section>
 
-
-            {/* Footer */}
-            <footer className="bg-gray-800 py-8">
-                <div className="flex flex-col mx-auto px-8 text-center">
-                    <p className="text-gray-400">© 2023 Trialhub. All rights reserved.</p>
-                    <div className="flex justify-center items-center mt-4">
-                        <a href="#" className="text-gray-400 hover:text-white mx-3">Terms of Service</a>
-                        <span className="text-gray-400">|</span>
-                        <a href="#" className="text-gray-400 hover:text-white mx-3">Privacy Policy</a>
-                        <span className="text-gray-400">|</span>
-                        <a href="#" className="text-gray-400 hover:text-white mx-3">Contact Us</a>
-                        <span className="text-gray-400">|</span>
-                        <a href="#" className="text-gray-400 hover:text-white mx-3">Instagram</a>
-                        <a href="#" className="text-gray-400 hover:text-white mx-3">LinkedIn</a>
-                        <a href="#" className="text-gray-400 hover:text-white mx-3">Twitter</a>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
 
         </div>
     );
