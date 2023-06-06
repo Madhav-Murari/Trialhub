@@ -3,7 +3,6 @@ import React from "react";
 const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here
   };
 
   return (
@@ -61,7 +60,7 @@ const Contact: React.FC = () => {
             ></textarea>
           </div>
           <div className="flex justify-center">
-            <button className="px-6 py-3 bg-[#FF725E] text-white font-bold rounded-md">
+            <button className="px-6 py-3 bg-primary text-white font-bold rounded-md">
               Submit
             </button>
           </div>
