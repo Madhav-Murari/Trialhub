@@ -69,11 +69,6 @@ const LeaveContent = () => {
             </div>
           </div>
           <div className="">
-            {/* <InformationCard />
-            <InformationCard />
-            <InformationCard />
-            <InformationCard />
-            <InformationCard /> */}
             <InformationCard />
           </div>
         </div>

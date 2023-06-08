@@ -11,7 +11,7 @@ const InformationCard = () => {
   useEffect(() => {
     setLoad(true);
     async function getData() {
-      const get = await fetch("https://trialhub-backend.onrender.com/api/v1/:clientId/leave/");
+      const get = await fetch(`https://trialhub-backend.onrender.com/api/v1/123/leave`);
       const res = await get.json();
       setUser(res);
       setLoad(false);
