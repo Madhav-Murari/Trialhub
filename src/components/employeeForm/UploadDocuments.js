@@ -1,42 +1,53 @@
 import React, { useState } from "react";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
+import axios from "axios";
 
-export default function UploadDocuments() {
-  const router = useRouter()
+export default function UploadDocuments(props) {
+  const router = useRouter();
 
   const [resume, setResume] = useState("");
-  const [marksheet10, setMarksheet10] = useState('')
-  const [marksheet12, setMarksheet12] = useState('')
-  const [panCard, setPanCard] = useState('')
-  const [aadharCard, setAadharCard] = useState('')
+  const [marksheet10, setMarksheet10] = useState("");
+  const [marksheet12, setMarksheet12] = useState("");
+  const [panCard, setPanCard] = useState("");
+  const [aadharCard, setAadharCard] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("marksheet10", marksheet10 );
-    formData.append("marksheet12", marksheet12 );
-    formData.append("panCard", panCard );
-    formData.append("aadharCard", aadharCard );
-    formData.append("resume", resume );
+    formData.append("name", props.name);
+    formData.append("department", props.department);
+    formData.append("dob", props.dob);
+    formData.append("mobile", props.mobile);
+    formData.append("email", props.email);
+    formData.append("area", props.area);
+    formData.append("town", props.town);
+    formData.append("pincode", props.pincode);
+    formData.append("state", props.state);
+    formData.append("marksheet10", marksheet10);
+    formData.append("marksheet12", marksheet12);
+    formData.append("panCard", panCard);
+    formData.append("aadharCard", aadharCard);
+    formData.append("resume", resume);
 
-    const url = "http://localhost:3000/AddEmployee";
-    const response = await fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-    const data = response.json();
-    if(data){
-      console.log("data: ", data);
+    const userDataString = localStorage.getItem("userData");
+    const authData = JSON.parse(userDataString);
+    const clientId = authData.clientId;
+
+    const url = `https://trialhub-backend.onrender.com/api/v1/${clientId}/userAdd`;
+    try {
+      const response = await axios.post(url, formData);
+      console.log("data: ", response.data);
       router.push("/");
-    }else{
-      router.push('/AddEmployee');
+    } catch (error) {
+      console.error("Failed to submit form:", error);
+      router.push("/AddEmployee");
     }
   }
 
-  const handleCancel=(e)=>{
+  const handleCancel = (e) => {
     e.preventDefault();
     router.push("/");
-  }
+  };
   return (
     <>
       <div className="pb-8 mx-auto">
@@ -59,7 +70,9 @@ export default function UploadDocuments() {
             file:bg-[#E3D5CA] file:text-dark-500
             hover:file:bg-violet-100 mx-4"
             name="marksheet10"
-            onChange={(e)=>{setMarksheet10(e.target.files[0])}}
+            onChange={(e) => {
+              setMarksheet10(e.target.files[0]);
+            }}
           />
         </div>
 
@@ -78,7 +91,9 @@ export default function UploadDocuments() {
             file:bg-[#E3D5CA] file:text-dark-500
             hover:file:bg-violet-100 mx-4"
             name="marksheet12"
-            onChange={(e)=>{setMarksheet12(e.target.files[1])}}
+            onChange={(e) => {
+              setMarksheet12(e.target.files[1]);
+            }}
           />
         </div>
 
@@ -97,7 +112,9 @@ export default function UploadDocuments() {
             file:bg-[#E3D5CA] file:text-dark-500
             hover:file:bg-violet-100 mx-4"
             name="aadharCard"
-            onChange={(e)=>{setAadharCard(e.target.files[2])}}
+            onChange={(e) => {
+              setAadharCard(e.target.files[2]);
+            }}
           />
         </div>
 
@@ -116,7 +133,9 @@ export default function UploadDocuments() {
             file:bg-[#E3D5CA]  file:text-dark-500
             hover:file:bg-violet-100 mx-4"
             name="panCard"
-            onChange={(e)=>{setPanCard(e.target.files[3])}}
+            onChange={(e) => {
+              setPanCard(e.target.files[3]);
+            }}
           />
         </div>
 
@@ -135,7 +154,9 @@ export default function UploadDocuments() {
             file:bg-[#E3D5CA]  file:text-dark-500
             hover:file:bg-violet-100 mx-4"
             name="resume"
-            onChange={(e)=>{setResume(e.target.files[4])}}
+            onChange={(e) => {
+              setResume(e.target.files[4]);
+            }}
           />
         </div>
 
@@ -146,7 +167,10 @@ export default function UploadDocuments() {
           >
             Submit
           </button>
-          <button onClick={handleCancel} className="text-dark rounded-full border-2 border-[#202020]  px-5 py-2 mx-1 my-8 flex items-center">
+          <button
+            onClick={handleCancel}
+            className="text-dark rounded-full border-2 border-[#202020]  px-5 py-2 mx-1 my-8 flex items-center"
+          >
             Cancel
           </button>
         </div>

@@ -21,12 +21,13 @@ interface UserDetails {
   phone_number: string;
   name: string;
   clientId: string;
+  profilePic: string
   dateOfBirth: string;
   role: string;
   parent: string;
 }
 
-interface uData {
+interface AuthData {
   clientId: string;
   userId: string;
 }
@@ -34,6 +35,7 @@ interface uData {
 const ProfilePage = () => {
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const router = useRouter();
+  const { employeeId } = router.query;
 
   useEffect(() => {
     const userDataString: string | null = localStorage.getItem("userData");
@@ -43,12 +45,11 @@ const ProfilePage = () => {
     }
 
     try {
-      const uData: uData = JSON.parse(userDataString);
-      const userId = uData.userId;
-      const clientId = uData.clientId;
+      const authData: AuthData = JSON.parse(userDataString);
+      const clientId = authData.clientId;
       axios
         .get(
-          `https://trialhub-backend.onrender.com/api/v1/${clientId}/user/${userId}`
+          `https://trialhub-backend.onrender.com/api/v1/${clientId}/user/${employeeId}`
         )
         .then((response) => {
           setUserDetails(response.data);

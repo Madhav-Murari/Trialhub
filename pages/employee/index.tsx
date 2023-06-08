@@ -1,11 +1,18 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { MdSearch } from "react-icons/md";
 import AllEmployees from "../../src/components/employeeCards/AllEmployees";
 
 function employee() {
   const router = useRouter();
 
+  useEffect(() => {
+    const userDataString = localStorage.getItem("userData");
+    if (!userDataString) {
+      router.push("/login");
+      return;
+    }
+  }, []);
   const addEmployeeButton = () => {
     router.push("/AddEmployee");
   };
