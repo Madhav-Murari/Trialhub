@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./NavbarLayout";
 import { useRouter } from "next/router";
+import Footer from "../src/components/Hero/Footer";
 
 const Layout = ({ children }) => {
   const router = useRouter();
@@ -69,6 +70,7 @@ const Layout = ({ children }) => {
         /> */}
         <main className="w-full">{children}</main>
       </div>
+      <Footer />
     </div>
   );
 };

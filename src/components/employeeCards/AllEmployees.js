@@ -1,17 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardEmployee from "./CardEmployee";
 import Left from "../../assets/Left.svg";
 import Right from "../../assets/Right.svg";
 import Image from "next/image";
-import employeeData from "./EmployeeData";
+
+import employeeData1 from "./EmployeeData";
+
+import axios from "axios";
 import ManagerTeam from "../Manager/ManagerTeam";
 
 export default function EmployeeCard() {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(10);
   const [pageNum, setPageNum] = useState(1);
+  const [employeeData, setEmployeeData] = useState([]);
+  useEffect(() => {
+  
+    try {
+      const authData = JSON.parse(userDataString);
+      const clientId = authData.clientId;
+      axios
+        .get(`https://trialhub-backend.onrender.com/api/v1/${clientId}/user`)
+        .then((response) => {
+          const data = response.data;
+          setEmployeeData(data.data);
+        })
+        .catch((error) => {
+          console.error("Error retrieving employee data:", error);
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
 
   const [currPage, setCurrPage] = useState("all");
+  // if (employeeData.length == 0) {
+  //   setEmployeeData(employeeData1);
+  // }
   return (
     <>
       <div className="flex flex-col sm:flex-row">
@@ -46,7 +71,11 @@ export default function EmployeeCard() {
           {currPage === "all" && (
             <>
               <div className=" flex flex-wrap justify-center">
-                <CardEmployee start={start} end={end} />
+                <CardEmployee
+                  start={start}
+                  end={end}
+                  employeeData={employeeData}
+                />
               </div>
 
               <div className="mt-4 flex flex-row justify-center">
@@ -81,7 +110,7 @@ export default function EmployeeCard() {
             </>
           )}
 
-          {currPage==="manager" && <ManagerTeam />}
+          {currPage === "manager" && <ManagerTeam />}
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React from "react";
-import EmployeeCard from "../src/components/employeeCards/AllEmployees";
 import Head from "next/head";
+import Hero from "../src/components/Hero/Hero";
+import AllEmployees from "../src/components/employeeCards/AllEmployees";
 
 const index = () => {
   return (
@@ -8,7 +9,7 @@ const index = () => {
       <Head>
         <title>Trialhub</title>
       </Head>
-      <EmployeeCard />
+      <Hero />
     </>
   );
 };
