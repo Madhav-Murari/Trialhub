@@ -26,7 +26,6 @@ export default function index({ }: Props) {
     if (role === "superAdmin") {
       fetchAllTasks()
         .then((response) => {
-          console.log(response, "resp");
           setTaskData(response);
           setLoading(false);
         })
@@ -40,7 +39,6 @@ export default function index({ }: Props) {
         .catch((err) => console.log("Erros is ", err.message));
     }
   }, []);
-  console.log(taskData, "taskData")
   return (
     <>
       <div className="p-4 h-full">

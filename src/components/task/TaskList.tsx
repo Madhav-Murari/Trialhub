@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { AuthData, TaskDetails, TaskResponse } from "../..//Api/PropTypes";
-import { useRouter } from "next/router";
+import { TaskResponse } from "../..//Api/PropTypes";
 import StatusTile from "./StatusTile";
 
 type Props = {
@@ -8,18 +6,6 @@ type Props = {
 };
 
 export default function TasksList({ tasks }: Props) {
-  console.log(tasks, "tasks")
-  const router = useRouter();
-
-  useEffect(() => {
-    const userDataString: string | null = localStorage.getItem("userData");
-    if (!userDataString) {
-      router.push("/login");
-      return;
-    }
-    const authData: AuthData = JSON.parse(userDataString);
-  }, []);
-
   return (
     <>
       {tasks && (
