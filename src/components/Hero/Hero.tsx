@@ -31,7 +31,13 @@ const Hero: React.FC = () => {
         >
           {auth ? "Go to dashboard" : "Join us now"}
         </Link>
-        <Image className="w-3/3 md:w-2/3 lg:w-2/4" src={HeroImage} alt="Hero" />
+        <Image
+          className="w-3/3 md:w-2/3 lg:w-2/4"
+          src={HeroImage}
+          alt="Hero"
+          priority={true}
+          placeholder="blur"
+          blurDataURL="data:image/png..." />
       </section>
 
       {/* Features Section */}

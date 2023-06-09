@@ -4,26 +4,28 @@ import WorkBox from "./WorkBox";
 import { useRouter } from "next/router";
 import {
   UserDetails,
-  TaskDetails,
-  MeetingDetails,
+  // TaskDetails,
+  // MeetingDetails,
   AttendanceDetails,
   AuthData,
 } from "./dashboardTypes";
-import { calculateTotalTimeWorked, calculateHeight } from "./dashboardUtils";
+import {
+  calculateTotalTimeWorked,
+  // calculateHeight 
+} from "./dashboardUtils";
 import {
   fetchUserData,
-  fetchTaskData,
-  fetchMeetingData,
+  // fetchTaskData,
+  // fetchMeetingData,
   fetchAttendanceData,
 } from "./dashboardApi";
 import { FaArrowRight } from "react-icons/fa";
 
 export function Dashboard() {
   const [userData, setUserData] = useState<UserDetails | null>(null);
-  const [taskData, setTaskData] = useState<TaskDetails | null>(null);
-  const [meetingData, setMeetingData] = useState<MeetingDetails | null>(null);
-  const [attendanceData, setAttendanceData] =
-    useState<AttendanceDetails | null>(null);
+  // const [taskData, setTaskData] = useState<TaskDetails | null>(null);
+  // const [meetingData, setMeetingData] = useState<MeetingDetails | null>(null);
+  const [attendanceData, setAttendanceData] = useState<AttendanceDetails | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -46,23 +48,23 @@ export function Dashboard() {
           console.error(err);
         });
 
-      // Fetch task data
-      fetchTaskData(clientId, userId)
-        .then((response) => {
-          setTaskData(response);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      // // Fetch task data
+      // fetchTaskData(clientId, userId)
+      //   .then((response) => {
+      //     setTaskData(response);
+      //   })
+      //   .catch((err) => {
+      //     console.error(err);
+      //   });
 
-      // Fetch meeting data
-      fetchMeetingData(clientId)
-        .then((response) => {
-          setMeetingData(response);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      // // Fetch meeting data
+      // fetchMeetingData(clientId)
+      //   .then((response) => {
+      //     setMeetingData(response);
+      //   })
+      //   .catch((err) => {
+      //     console.error(err);
+      //   });
 
       // Fetch attendance data
       fetchAttendanceData(userId)
@@ -72,6 +74,7 @@ export function Dashboard() {
         .catch((err) => {
           console.log(err);
         });
+
       // setAttendanceData({
       //   userId: "",
       //   clientId: "Mah123",
@@ -112,7 +115,7 @@ export function Dashboard() {
     }
   }, []);
 
-  console.log(userData);
+  console.log(userData, "userData in dashboard");
 
   return (
     <>
