@@ -3,8 +3,31 @@ import Image from "next/image";
 import ProfilePic from "../../../public/proPic.webp";
 import InformationCard from "./InformationCard";
 
+import {useState, useEffect } from "react";
+
 const LeaveContent = () => {
+  const [user, setUser] = useState(false);
+  const [load, setLoad] = useState([]);
+  const [items, setItems] = useState([]);
+
+useEffect(() => {
+  const items = JSON.parse(localStorage.getItem('userData'));
+  if (items) {
+   setItems(items);
+  }
+  setLoad(true);
+    async function getData() {
+      const get = await fetch(`https://trialhub-backend.onrender.com/api/v1/${items.clientId}/user/${items.userId}`);
+      const res = await get.json();
+      setUser(res);
+      setLoad(false);
+    }
+    getData();
+}, []);
+
   return (
+    <>
+    { load?" ":
     <div className="h-full w-ful">
       <div className="bg-orange-200 flex flex-wrap m-auto  p-4 justify-center">
         <div className="w-4/12 py-4">
@@ -17,13 +40,13 @@ const LeaveContent = () => {
 
         <div className="md:w-6/12 m-auto px-3">
           <div className="m-auto">
-            <h1 className="font-semibold">WELCOME! SHASHANK YADAV</h1>
+            <h1 className="font-semibold">WELCOME! {user.name}</h1>
             <div className="">
               <div className="">
-                <span>Employee id :</span>
+                <span>Employee id : {user.clientId}</span>
               </div>
               <div className="">
-                <span>Designation :</span>
+                <span>Designation : {user.role}</span>
               </div>
             </div>
           </div>
@@ -74,6 +97,8 @@ const LeaveContent = () => {
         </div>
       </div>
     </div>
+    }
+    </>
   );
 };
 
