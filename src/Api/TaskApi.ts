@@ -14,8 +14,14 @@ export function fetchAllTasks(): Promise<TaskResponse> {
     .then((response) => response.data);
 }
 
-export function addTask(addTask: TaskDetails | null): Promise<TaskDetails> {
+export function addTask(addTaskData: TaskDetails | null): Promise<TaskDetails> {
   return axios
-    .post(`https://trialhub-backend.onrender.com/api/v1/addTask`, addTask)
+    .post(`https://trialhub-backend.onrender.com/api/v1/addTask`, addTaskData)
+    .then((response) => response.data);
+}
+
+export function updateTask(updateTaskData: TaskDetails | null, clientID: string, userId: string): Promise<TaskDetails> {
+  return axios
+    .post(`https://trialhub-backend.onrender.com/api/v1/${clientID}/task/${userId}`, updateTaskData)
     .then((response) => response.data);
 }
