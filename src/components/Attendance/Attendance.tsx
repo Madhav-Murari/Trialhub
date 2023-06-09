@@ -1,38 +1,27 @@
-import React from 'react'
 import FilterIcon from '../icons/filterIcon';
 import AttendanceItem from './AttendanceItem';
-
-const attendanceSheet = [
-  {
-    dp:"https://www.w3schools.com/howto/img_avatar.png",
-    name:"Harsh",
-    Department:"Web Design",
-    Presence:true,
-    In:"8:30 AM",
-    Out:"4:30 PM",
-    TotalWorkingHours:"8.00 Hrs",
-  },
-  {
-    dp:"https://www.w3schools.com/howto/img_avatar.png",
-    name:"Abhishek",
-    Department:"Web Design",
-    Presence:false,
-    In:"8:30 AM",
-    Out:"4:30 PM",
-    TotalWorkingHours:"8.00 Hrs",
-  },
-  {
-    dp:"https://www.w3schools.com/howto/img_avatar.png",
-    name:"Harsh",
-    Department:"Web Design",
-    Presence:false,
-    In:"8:30 AM",
-    Out:"4:30 PM",
-    TotalWorkingHours:"8.00 Hrs",
-  },
-];
+import React, { useState, useEffect } from 'react';
+import { AuthData } from '../../Api/PropTypes';
 
 function Attendance() {
+  const [attendanceSheet, setAttendanceSheet] = useState([]);
+
+  const userDataString: string | null = localStorage.getItem("userData");
+  const authData: AuthData | null = userDataString ? JSON.parse(userDataString) : null;
+  const clientId = authData?.clientId;
+  useEffect(() => {
+    if (clientId) {
+      fetch(`https://trialhub-backend.onrender.com/api/v1/${clientId}/attendance`)
+        .then(response => response.json())
+        .then(data => {
+          setAttendanceSheet(data.data);
+          console.log(data);
+        })
+        .catch(error => console.error(error));
+    }
+  }, [clientId]);
+
+    
   return (
     <>
     <div className='flex justify-between max-w-1280px mx-auto py-1 px-4 border-b bg-white'>
@@ -57,8 +46,9 @@ function Attendance() {
         </tr>
         </thead>
         <tbody>
-        {attendanceSheet.map((i,index) => (
-          <AttendanceItem key = {index} item = {i}/>
+        {/* {attendanceSheet.map((i,index) => ( */}
+        {attendanceSheet.map((item,index) => (
+          <AttendanceItem key = {index} item = {item}/>
         ))}
         </tbody>
       </table>

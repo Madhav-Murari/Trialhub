@@ -1,3 +1,11 @@
+export enum RoleType {
+    superAdmin = 'superAdmin',
+    admin = 'admin',
+    manager = 'manager',
+    employee = 'employee',
+    // default = 'employee',
+}
+
 export interface UserDetails {
     coverage: {
         working_hours: {
@@ -24,14 +32,12 @@ export interface UserDetails {
 
 //Task Proptypes
 export interface TaskDetails {
-    data: [{
-        userId: string;
-        clientId: string;
-        task: string;
-        status: string;
-        startDate: string;
-        endDate: string;
-    }]
+    userId: string;
+    clientId: string;
+    task: string;
+    status: string;
+    startDate: string;
+    endDate: string;
 }
 
 //Meeting Proptypes
@@ -67,4 +73,5 @@ export interface AttendanceDetails {
 export interface AuthData {
     userId: string;
     clientId: string;
+    role: RoleType;
 }
