@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { AuthData, TaskDetails } from "../..//Api/PropTypes";
+import { AuthData, TaskDetails, TaskResponse } from "../..//Api/PropTypes";
 import { useRouter } from "next/router";
 import StatusTile from "./StatusTile";
 
 type Props = {
-  tasks: TaskDetails[];
+  tasks: TaskResponse;
 };
 
 export default function TasksList({ tasks }: Props) {

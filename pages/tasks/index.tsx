@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TaskList from "../../src/components/task/TaskList";
 import { fetchAllTasks, fetchTaskData } from "../../src/Api/TaskApi";
-import { AuthData, TaskDetails } from "../../src/Api/PropTypes";
+import { AuthData, TaskResponse } from "../../src/Api/PropTypes";
 import { useRouter } from "next/router";
 import TaskaAdd from "../../src/components/task/TaskaAdd";
 
@@ -10,9 +10,9 @@ type Props = {};
 export default function index({ }: Props) {
   const router = useRouter();
 
-  const [taskData, setTaskData] = useState<TaskDetails[]>([]);
+  const [taskData, setTaskData] = useState<TaskResponse>();
   const [loading, setLoading] = useState<boolean>(true);
-  
+
   useEffect(() => {
     const userDataString: string | null = localStorage.getItem("userData");
     if (!userDataString) {
@@ -57,7 +57,7 @@ export default function index({ }: Props) {
           </div>
 
           <div className="basis-1/2 mx-1">
-            {!loading ? (
+            {!loading && taskData ? (
               <TaskList tasks={taskData} />
             ) : (
               <div className="bg-white shadow rounded-md p-2">

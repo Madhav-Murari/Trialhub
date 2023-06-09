@@ -39,6 +39,13 @@ export interface TaskDetails {
     startDate: string;
     endDate: string;
 }
+export interface TaskResponse {
+    data: TaskDetails[];
+    limit: number;
+    page: number;
+    totalCount: number;
+    totalUsers: TaskDetails[];
+}
 
 //Meeting Proptypes
 export interface MeetingDetails {
