@@ -1,42 +1,47 @@
 import React, { useEffect, useState } from "react";
 import Meeting from "../src/components/meeting";
+import { AuthData, MeetingDetails } from "../src/Api/Interface";
+import { useRouter } from "next/router";
+import { getMeetings } from "../src/Api/MeetingAPI";
 
-interface MeetingDataProps {
-  meetingData: [
-    {
-      _id: string;
-      status: string;
-      clientId: string;
-      role: string;
-      purpose: string;
-      time?: string;
-      __v?: string;
-    }
-  ];
-}
+type Props = {};
+const meeting: React.FC<Props> = ({}) => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [meetingData, setMeetingData] = useState<MeetingDetails>({
+    totalCount: 0,
+    page: 0,
+    limit: 0,
+    data: [],
+    totalUsers: [],
+  });
 
-const meeting: React.FC<MeetingDataProps> = ({ meetingData }) => {
-  const [getMeetings, setGetMeetings] = useState<MeetingDataProps[]>([]);
-
-  const getMeetingData = async () => {
-    try {
-      const response = await fetch(
-        "https://trialhub-backend.onrender.com/api/v1/123/meeting"
-      );
-      const data = await response.json();
-      setGetMeetings(data.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const router = useRouter();
 
   useEffect(() => {
-    getMeetingData();
+    const userDataString: string | null = localStorage.getItem("userData");
+    if (!userDataString) {
+      router.push("/login");
+      return;
+    }
+
+    const authData: AuthData = JSON.parse(userDataString);
+    const clientId = authData.clientId;
+
+    getMeetings(clientId)
+      .then((response) => {
+        setMeetingData(response);
+        setLoading(false);
+      })
+      .catch((err) => console.log("Erros is ", err.message));
   }, []);
 
   return (
     <>
-      <Meeting meetingDataIFC={getMeetings} />
+      {!loading ? (
+        <Meeting meetingData={meetingData} />
+      ) : (
+        <div className="p-3 animate-pulse">Fetching meeting details...</div>
+      )}
     </>
   );
 };
