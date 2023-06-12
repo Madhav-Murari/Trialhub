@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
-import { AuthData } from "../../Api/PropTypes";
+import { AuthData } from "../../Api/Interface";
 import AddTaskForm from "./AddTaskForm";
 import UpdateTaskForm from "./UpdateTaskForm";
 

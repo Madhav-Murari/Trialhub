@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TaskList from "../../src/components/task/TaskList";
 import { fetchAllTasks, fetchTaskData } from "../../src/Api/TaskApi";
-import { AuthData, TaskResponse } from "../../src/Api/PropTypes";
+import { AuthData, TaskResponse } from "../../src/Api/Interface";
 import { useRouter } from "next/router";
 import TaskaAdd from "../../src/components/task/TaskaAdd";
 
@@ -58,7 +58,7 @@ export default function index({ }: Props) {
             {!loading && taskData ? (
               <TaskList tasks={taskData} />
             ) : (
-              <div className="bg-white shadow rounded-md p-2">
+              <div className="bg-white shadow rounded-md p-2 animate-pulse">
                 Loading task details...
               </div>
             )}
