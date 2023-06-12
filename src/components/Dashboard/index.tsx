@@ -1,31 +1,33 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import WorkBox from "./WorkBox";
-import axios from "axios";
 import { useRouter } from "next/router";
 import {
   UserDetails,
-  TaskDetails,
-  MeetingDetails,
+  // TaskDetails,
+  // MeetingDetails,
   AttendanceDetails,
   AuthData,
 } from "./dashboardTypes";
-import { calculateTotalTimeWorked, calculateHeight } from "./dashboardUtils";
+import {
+  calculateTotalTimeWorked,
+  // calculateHeight 
+} from "./dashboardUtils";
 import {
   fetchUserData,
-  fetchTaskData,
-  fetchMeetingData,
+  // fetchTaskData,
+  // fetchMeetingData,
   fetchAttendanceData,
 } from "./dashboardApi";
+import { FaArrowRight } from "react-icons/fa";
 
 export function Dashboard() {
   const [userData, setUserData] = useState<UserDetails | null>(null);
-  const [taskData, setTaskData] = useState<TaskDetails | null>(null);
-  const [meetingData, setMeetingData] = useState<MeetingDetails | null>(null);
-  const [attendanceData, setAttendanceData] =
-  useState<AttendanceDetails | null>(null);
+  // const [taskData, setTaskData] = useState<TaskDetails | null>(null);
+  // const [meetingData, setMeetingData] = useState<MeetingDetails | null>(null);
+  const [attendanceData, setAttendanceData] = useState<AttendanceDetails | null>(null);
   const router = useRouter();
-  
+
   useEffect(() => {
     const userDataString: string | null = localStorage.getItem("userData");
     if (!userDataString) {
@@ -46,23 +48,23 @@ export function Dashboard() {
           console.error(err);
         });
 
-      // Fetch task data
-      fetchTaskData(clientId, userId)
-        .then((response) => {
-          setTaskData(response);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      // // Fetch task data
+      // fetchTaskData(clientId, userId)
+      //   .then((response) => {
+      //     setTaskData(response);
+      //   })
+      //   .catch((err) => {
+      //     console.error(err);
+      //   });
 
-      // Fetch meeting data
-      fetchMeetingData(clientId)
-        .then((response) => {
-          setMeetingData(response);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      // // Fetch meeting data
+      // fetchMeetingData(clientId)
+      //   .then((response) => {
+      //     setMeetingData(response);
+      //   })
+      //   .catch((err) => {
+      //     console.error(err);
+      //   });
 
       // Fetch attendance data
       fetchAttendanceData(userId)
@@ -72,6 +74,7 @@ export function Dashboard() {
         .catch((err) => {
           console.log(err);
         });
+
       // setAttendanceData({
       //   userId: "",
       //   clientId: "Mah123",
@@ -112,48 +115,47 @@ export function Dashboard() {
     }
   }, []);
 
-  console.log(userData);
+  console.log(userData, "userData in dashboard");
 
   return (
     <>
       {userData ? (
-        <div className="h-screen md:flex">
-          <div className=" w-full md:w-1/4 pt-16 h-full text-center bg-red-300 flex flex-col justify-around">
+        <div className="md:h-full md:flex">
+          <div className="w-full md:w-1/4 h-full text-center bg-gray-100 flex flex-col">
             <img
               src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg"
-              className="h-40 w-40 rounded-md mx-auto"
+              className="h-40 w-40 rounded-md mx-auto my-5"
             />
             <div>
-              <h4>{userData.name}</h4>
-              <h3 className="text-white">{userData.role}</h3>
+              <div className="text-[2rem] font-semibold">{userData.name && 'Name : ' + userData.name}</div>
+              <h3 className="text-[1rem] font-medium text-green">{userData.role && 'Role : ' + userData.role}</h3>
+              <h3 className="text-[1rem] text-sky-500 text-green">{userData.email && 'Email : ' + userData.email}</h3>
             </div>
-            <div className="rounded-md w-5/6 bg-red-200 py-4 mx-auto">
-              AT WORK FOR : 1 YEAR
+            <div className="mt-4 mb-1 mx-auto">
+              Useful Links
             </div>
-            <div className="rounded-md w-3/4 bg-red-200 py-4 mx-auto">
-              OVERVIEW
-            </div>
-            <div className="w-3/4 flex flex-col justify-between items-start mx-auto">
-              <Link href="#">
-                <h2 className="text-[24px]">Profile</h2>
+            <div className="w-3/4 flex flex-col justify-between items-start mx-auto my-2">
+              <Link className="w-full text-blue-500 flex flex-row items-center justify-between px-2 py-1 bg-gray-200 shadow-sm rounded-md my-1" href="attendence">
+                <h2 className="text-[20px] text-gray-700">Attendence</h2>
+                <span className="text-gray-400 text-[12px]"><FaArrowRight /></span>
               </Link>
-              <Link href="#">
-                <h2 className="text-[24px]">Calander</h2>
+              <Link className="w-full text-blue-500 flex flex-row items-center justify-between px-2 py-1 bg-gray-200 shadow-sm rounded-md my-1" href="tasks">
+                <h2 className="text-[20px] text-gray-700">View tasks</h2>
+                <span className="text-gray-400 text-[12px]"><FaArrowRight /></span>
               </Link>
-              <Link href="#">
-                <h2 className="text-[24px]">Collegues</h2>
+              <Link className="w-full text-blue-500 flex flex-row items-center justify-between px-2 py-1 bg-gray-200 shadow-sm rounded-md my-1" href="meeting">
+                <h2 className="text-[20px] text-gray-700">My meetings</h2>
+                <span className="text-gray-400 text-[12px]"><FaArrowRight /></span>
               </Link>
-              <Link href="#">
-                <h2 className="text-[24px]">Documents</h2>
-              </Link>
-              <Link href="#">
-                <h2 className="text-[24px]">Support</h2>
+              <Link className="w-full text-blue-500 flex flex-row items-center justify-between px-2 py-1 bg-gray-200 shadow-sm rounded-md my-1" href="leave">
+                <h2 className="text-[20px] text-gray-700">Check leave</h2>
+                <span className="text-gray-400 text-[12px]"><FaArrowRight /></span>
               </Link>
             </div>
           </div>
-          <div className="w-full md:w-3/4 md:pt-16 p-4 flex flex-col justify-between">
-            <div className="h-1/3 md:flex justify-between">
-              <div className="md:w-2/5 h-full flex flex-col justify-around bg-white p-6">
+          <div className="w-full md:w-3/4 p-4 flex flex-col justify-">
+            <div className="md:flex justify-between">
+              <div className="md:w-2/5 my-5 flex flex-col justify-around bg-white p-6 rounded-md shadow hover:shadow-md">
                 <h2>WORKLOG</h2>
                 <div>
                   <div className="flex justify-between">
@@ -192,7 +194,7 @@ export function Dashboard() {
                   </div>
                 </div>
               </div>
-              <div className="md:w-2/5 h-full flex justify-center items-end bg-white">
+              {/* <div className="md:w-2/5 h-full flex justify-center items-end bg-white">
                 {attendanceData &&
                   attendanceData.attendance.timeCollection
                     .slice(0, 7)
@@ -206,18 +208,16 @@ export function Dashboard() {
                         DAY {index + 1}
                       </div>
                     ))}
-              </div>
+              </div> */}
             </div>
-            <div className="h-1/10 py-4 bg-white flex flex-wrap justify-around">
+            <div className="py-4 flex flex-wrap justify-evenly">
               <WorkBox qnty="10" text="No of task assigned" icon="📃" />
               <WorkBox qnty="3" text="No of task left" icon="🖋️" />
               <WorkBox qnty="4" text="No of upcoming meetings" icon="🎦" />
               <WorkBox qnty="10" text="No of pending tasks" icon="⏰" />
             </div>
             <div className="flex flex-col bg-white p-6">
-              <h2 className="text-[24px]">Today</h2>
-              <p className="text-gray-600">Birthday</p>
-              <h2 className="text-[24px]">Its Deepak Birthday</h2>
+              <h2 className="text-[24px]">Date : 23/03/2023</h2>
               <p className="text-gray-600">Meeting</p>
               <h2 className="text-[24px]">Meeting with UI Team</h2>
               <p className="text-gray-600">Presentation</p>

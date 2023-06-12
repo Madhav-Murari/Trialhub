@@ -1,15 +1,12 @@
 import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from 'next/router';
-import {
-  FaUserTie,
-} from "react-icons/fa";
+// import { useRouter } from 'next/router';
+import { FaUserTie } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { useState } from "react";
 import axios from "axios";
 
 export default function LoginPage() {
-  const router = useRouter();
+  // const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,7 +17,7 @@ export default function LoginPage() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,24 +27,25 @@ export default function LoginPage() {
         formData
       );
       console.log(res);
-  
+
       if (res.data.Login === "Succesful") {
         const userData = {
           userId: res.data.UserData._id,
-          clientId: res.data.UserData.clientId
+          clientId: res.data.UserData.clientId,
+          role: res.data.UserData.role,
         };
-        console.log(userData);
+        // console.log(userData);
         localStorage.setItem("userData", JSON.stringify(userData));
 
-        router.push('/dashboard');
+        // router.push('/dashboard');
+        window.location.replace("/dashboard");
       } else {
-        alert(res.data.Comment)
+        alert(res.data.Comment);
       }
     } catch (err) {
       console.log(err);
     }
-  }
-
+  };
 
   return (
     <>
@@ -69,7 +67,10 @@ export default function LoginPage() {
               <div className="py-10">
                 <h2 className="mb-6 text-2xl font-bold">SignIn to Account</h2>
 
-                <form onSubmit={handleSubmit}  className="flex flex-col gap-4 items-center mb-3">
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col gap-4 items-center mb-3"
+                >
                   <div className="flex items-center w-64 p-2 bg-gray-100 ">
                     <FaUserTie className="text=gray-300 mr-2" />
                     <input
@@ -82,7 +83,7 @@ export default function LoginPage() {
                       required
                     />
                   </div>
-               
+
                   <div className="flex items-center w-64 p-2 bg-gray-100 ">
                     <MdLockOutline className="text=gray-300 mr-2" />
                     <input

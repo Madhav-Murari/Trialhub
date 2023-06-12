@@ -19,6 +19,7 @@ module.exports = {
         "1/20": "5%",
       },
       colors: {
+        primary: "#FF725E",
         "light-grey": "#979797",
         "lighter-grey": "#EDEDE9",
         "light-primary": "#E3D5CA",

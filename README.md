@@ -1,6 +1,9 @@
 # Heyy There! Welcome to Trialhub App
 The website is live at [https://trialhub.netlify.app/](https://trialhub.netlify.app/)
-
+# Theme colours
+- ![#FF725E](https://placehold.co/15x15/FF725E/FF725E.png) `#FF725E`
+- ![##f3f4f6](https://placehold.co/15x15/#f3f4f6/#f3f4f6.png) `#f3f4f6`
+- ![##e5e7eb](https://placehold.co/15x15/#e5e7eb/#e5e7eb.png) `#e5e7eb`
 # Next.js + Tailwind CSS Example
 
 This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
