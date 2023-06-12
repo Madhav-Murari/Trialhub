@@ -71,11 +71,18 @@ export interface AttendanceRequest {
 export interface AttendanceDetails {
     userId: string;
     clientId: string;
-    status: string;
+    status?: string;
     attendance: {
-        timeCollection: TimeCollection[];
-        request: AttendanceRequest[];
+        timeCollection?: TimeCollection[];
+        request?: AttendanceRequest[];
     };
+}
+export interface AttendanceResponse {
+    data: AttendanceDetails[];
+    totalAttendances: AttendanceDetails[];
+    limit: number;
+    page: number;
+    totalCount: number;
 }
 export interface AuthData {
     userId: string;
