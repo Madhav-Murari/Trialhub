@@ -1,4 +1,4 @@
-import { TaskResponse } from "../..//Api/PropTypes";
+import { TaskResponse } from "../../Api/Interface";
 import StatusTile from "./StatusTile";
 
 type Props = {

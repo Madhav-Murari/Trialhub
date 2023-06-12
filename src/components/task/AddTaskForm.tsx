@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { addTask } from "../../Api/TaskApi";
-import { TaskDetails } from "../../Api/PropTypes";
+import { TaskDetails } from "../../Api/Interface";
 import Toast from "../toast/Toast";
 
 type Props = { role: String };

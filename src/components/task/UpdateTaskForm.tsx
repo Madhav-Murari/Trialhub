@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { updateTask } from "../../Api/TaskApi";
-import { AuthData, TaskDetails } from "../../Api/PropTypes";
+import { AuthData, TaskDetails } from "../../Api/Interface";
 import Toast from "../toast/Toast";
 import { useRouter } from "next/router";
 

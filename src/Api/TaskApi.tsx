@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TaskDetails, TaskResponse } from "./PropTypes";
+import { TaskDetails, TaskResponse } from "./Interface";
 
 
 export function fetchTaskData(clientId: string): Promise<TaskResponse> {
